@@ -1,2 +1,91 @@
-<!DOCTYPE html> 
-<html><head><title>Task 1</title></head><body></body></html> 
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Задание 1 - Эффекты для изображения</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            align-items: center;
+        }
+        .image-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+        }
+        .image-box {
+            text-align: center;
+        }
+        .image-box h3 {
+            margin-bottom: 10px;
+            color: #555;
+        }
+        .original-image {
+            width: 300px;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        .filtered-image {
+            width: 300px;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            filter: grayscale(100%) blur(3px);
+        }
+        .note {
+            background-color: #fff;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Задание 1: Изображение в оттенках серого с эффектом размытия</h1>
+    
+    <div class="container">
+        <div class="image-container">
+            <div class="image-box">
+                <h3>Оригинальное изображение</h3>
+                <img src="https://www.ultimatewb.com/blog/wp-content/uploads/html-js-css-website-coding.jpg" 
+                     alt="HTML,CSS,JS" class="original-image">
+            </div>
+            
+            <div class="image-box">
+                <h3>Изображение с эффектами</h3>
+                <img src="https://www.ultimatewb.com/blog/wp-content/uploads/html-js-css-website-coding.jpg" 
+                     alt="HTML,CSS,JS" class="filtered-image">
+            </div>
+        </div>
+        
+        <div class="note">
+            <h3>Как это работает:</h3>
+            <p>Для преобразования изображения в оттенки серого и добавления эффекта размытия используется CSS-свойство <code>filter</code>:</p>
+            <ul>
+                <li><code>grayscale(100%)</code> - преобразует изображение в оттенки серого</li>
+                <li><code>blur(3px)</code> - добавляет эффект размытия</li>
+            </ul>
+            <p>Эти эффекты можно также применить с помощью графических редакторов (Photoshop, GIMP и др.).</p>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,2 +1,545 @@
-<!DOCTYPE html> 
-<html><head><title>Task 6</title></head><body></body></html> 
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Задание 6 - Тумблер для iOS</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            color: #333;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 800px;
+            width: 100%;
+            background-color: white;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            text-align: center;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            color: #1d1d1f;
+            font-weight: 700;
+        }
+        
+        .subtitle {
+            font-size: 1.1rem;
+            color: #86868b;
+            margin-bottom: 40px;
+        }
+        
+        .toggle-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+        
+        .toggle-example {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .toggle-label {
+            font-size: 1.2rem;
+            font-weight: 500;
+            color: #1d1d1f;
+        }
+        
+        /* Стили для iOS тумблера */
+        .ios-toggle {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 34px;
+        }
+        
+        .ios-toggle input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        
+        .ios-toggle-slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #e0e0e0;
+            transition: .4s;
+            border-radius: 34px;
+        }
+        
+        .ios-toggle-slider:before {
+            position: absolute;
+            content: "";
+            height: 26px;
+            width: 26px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+        
+        input:checked + .ios-toggle-slider {
+            background-color: #34c759;
+        }
+        
+        input:checked + .ios-toggle-slider:before {
+            transform: translateX(26px);
+        }
+        
+        /* Улучшенный iOS тумблер с более точной стилизацией */
+        .ios-toggle-refined {
+            position: relative;
+            display: inline-block;
+            width: 51px;
+            height: 31px;
+        }
+        
+        .ios-toggle-refined input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        
+        .ios-toggle-refined-slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #e0e0e0;
+            transition: .4s;
+            border-radius: 31px;
+        }
+        
+        .ios-toggle-refined-slider:before {
+            position: absolute;
+            content: "";
+            height: 27px;
+            width: 27px;
+            left: 2px;
+            bottom: 2px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+        }
+        
+        input:checked + .ios-toggle-refined-slider {
+            background-color: #34c759;
+        }
+        
+        input:checked + .ios-toggle-refined-slider:before {
+            transform: translateX(20px);
+        }
+        
+        /* iOS тумблер с иконками */
+        .ios-toggle-icon {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 32px;
+        }
+        
+        .ios-toggle-icon input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        
+        .ios-toggle-icon-slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #e0e0e0;
+            transition: .4s;
+            border-radius: 34px;
+            display: flex;
+            align-items: center;
+            padding: 0 4px;
+        }
+        
+        .ios-toggle-icon-slider:before {
+            position: absolute;
+            content: "";
+            height: 24px;
+            width: 24px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            z-index: 2;
+        }
+        
+        .toggle-icon {
+            position: absolute;
+            font-size: 12px;
+            color: white;
+            z-index: 1;
+            transition: opacity 0.3s;
+        }
+        
+        .toggle-icon-on {
+            right: 8px;
+            opacity: 0;
+        }
+        
+        .toggle-icon-off {
+            left: 8px;
+            opacity: 0.5;
+        }
+        
+        input:checked + .ios-toggle-icon-slider {
+            background-color: #34c759;
+        }
+        
+        input:checked + .ios-toggle-icon-slider:before {
+            transform: translateX(28px);
+        }
+        
+        input:checked + .ios-toggle-icon-slider .toggle-icon-on {
+            opacity: 0.9;
+        }
+        
+        input:checked + .ios-toggle-icon-slider .toggle-icon-off {
+            opacity: 0;
+        }
+        
+        /* Тумблер с текстом */
+        .ios-toggle-text {
+            position: relative;
+            display: inline-block;
+            width: 70px;
+            height: 34px;
+        }
+        
+        .ios-toggle-text input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        
+        .ios-toggle-text-slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #e0e0e0;
+            transition: .4s;
+            border-radius: 34px;
+            display: flex;
+            align-items: center;
+            padding: 0 4px;
+        }
+        
+        .ios-toggle-text-slider:before {
+            position: absolute;
+            content: "";
+            height: 26px;
+            width: 26px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            z-index: 2;
+        }
+        
+        .toggle-text {
+            position: absolute;
+            font-size: 10px;
+            font-weight: 600;
+            color: white;
+            z-index: 1;
+            transition: opacity 0.3s;
+        }
+        
+        .toggle-text-on {
+            right: 8px;
+            opacity: 0;
+        }
+        
+        .toggle-text-off {
+            left: 8px;
+            opacity: 0.5;
+        }
+        
+        input:checked + .ios-toggle-text-slider {
+            background-color: #34c759;
+        }
+        
+        input:checked + .ios-toggle-text-slider:before {
+            transform: translateX(36px);
+        }
+        
+        input:checked + .ios-toggle-text-slider .toggle-text-on {
+            opacity: 0.9;
+        }
+        
+        input:checked + .ios-toggle-text-slider .toggle-text-off {
+            opacity: 0;
+        }
+        
+        .toggle-row {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+        
+        .toggle-card {
+            background-color: #f8f9fa;
+            border-radius: 15px;
+            padding: 25px;
+            min-width: 200px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s;
+        }
+        
+        .toggle-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .toggle-card h3 {
+            margin-bottom: 15px;
+            color: #1d1d1f;
+            font-size: 1.2rem;
+        }
+        
+        .info {
+            background-color: #f8f9fa;
+            border-radius: 15px;
+            padding: 30px;
+            margin-top: 30px;
+            text-align: left;
+        }
+        
+        .info h2 {
+            margin-bottom: 20px;
+            color: #1d1d1f;
+            font-size: 1.5rem;
+        }
+        
+        .info p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+            color: #515154;
+        }
+        
+        .info ul {
+            padding-left: 20px;
+            margin-bottom: 15px;
+        }
+        
+        .info li {
+            margin-bottom: 8px;
+            color: #515154;
+        }
+        
+        .code-block {
+            background-color: #1d1d1f;
+            color: #f5f5f7;
+            padding: 20px;
+            border-radius: 10px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            margin-top: 20px;
+            overflow-x: auto;
+            text-align: left;
+        }
+        
+        .footer {
+            margin-top: 40px;
+            text-align: center;
+            color: #86868b;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 25px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .toggle-row {
+                gap: 20px;
+            }
+            
+            .toggle-card {
+                min-width: 160px;
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Тумблер для iOS</h1>
+        <p class="subtitle">Реализация тумблера в стиле iOS с использованием только HTML и CSS</p>
+        
+        <div class="toggle-container">
+            <div class="toggle-example">
+                <span class="toggle-label">Базовый iOS тумблер</span>
+                <label class="ios-toggle">
+                    <input type="checkbox" checked>
+                    <span class="ios-toggle-slider"></span>
+                </label>
+            </div>
+            
+            <div class="toggle-row">
+                <div class="toggle-card">
+                    <h3>Улучшенный вариант</h3>
+                    <label class="ios-toggle-refined">
+                        <input type="checkbox" checked>
+                        <span class="ios-toggle-refined-slider"></span>
+                    </label>
+                    <p>Более точная стилизация под iOS</p>
+                </div>
+                
+                <div class="toggle-card">
+                    <h3>С иконками</h3>
+                    <label class="ios-toggle-icon">
+                        <input type="checkbox">
+                        <span class="ios-toggle-icon-slider">
+                            <span class="toggle-icon toggle-icon-on">✓</span>
+                            <span class="toggle-icon toggle-icon-off">✕</span>
+                        </span>
+                    </label>
+                    <p>С иконками включено/выключено</p>
+                </div>
+                
+                <div class="toggle-card">
+                    <h3>С текстом</h3>
+                    <label class="ios-toggle-text">
+                        <input type="checkbox" checked>
+                        <span class="ios-toggle-text-slider">
+                            <span class="toggle-text toggle-text-on">ON</span>
+                            <span class="toggle-text toggle-text-off">OFF</span>
+                        </span>
+                    </label>
+                    <p>С текстовыми метками</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="info">
+            <h2>Как работает iOS тумблер:</h2>
+            <p>iOS тумблер (switch) — это элемент пользовательского интерфейса, который позволяет переключаться между двумя состояниями (включено/выключено).</p>
+            
+            <p><strong>Технические детали реализации:</strong></p>
+            <ul>
+                <li>Тумблер создан с использованием HTML-элемента <code>&lt;input type="checkbox"&gt;</code></li>
+                <li>Визуальное представление реализовано с помощью CSS-псевдоэлементов</li>
+                <li>Для скрытия стандартного чекбокса используется <code>opacity: 0</code></li>
+                <li>Анимация переключения реализована с помощью CSS-свойства <code>transition</code></li>
+                <li>Состояние "включено" изменяет цвет фона на зеленый (#34c759) и перемещает ползунок</li>
+            </ul>
+            
+            <p><strong>Ключевые CSS-свойства:</strong></p>
+            <div class="code-block">
+<pre>/* Скрытие стандартного чекбокса */
+input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+/* Стилизация ползунка */
+.ios-toggle-slider {
+    position: absolute;
+    background-color: #e0e0e0;
+    border-radius: 34px;
+    transition: .4s;
+}
+
+/* Стилизация круга (ползунка) */
+.ios-toggle-slider:before {
+    position: absolute;
+    content: "";
+    background-color: white;
+    border-radius: 50%;
+    transition: .4s;
+}
+
+/* Состояние "включено" */
+input:checked + .ios-toggle-slider {
+    background-color: #34c759;
+}
+
+input:checked + .ios-toggle-slider:before {
+    transform: translateX(26px);
+}</pre>
+            </div>
+            
+            <p>Все варианты тумблеров выше интерактивны — вы можете нажимать на них для переключения состояния.</p>
+        </div>
+        
+        <div class="footer">
+            <p>Задание 6: Создание тумблера для iOS с использованием только HTML и CSS</p>
+        </div>
+    </div>
+    
+    <script>
+        // Добавляем интерактивность тумблерам
+        document.querySelectorAll('.ios-toggle input, .ios-toggle-refined input, .ios-toggle-icon input, .ios-toggle-text input').forEach(toggle => {
+            toggle.addEventListener('change', function() {
+                const toggleType = this.closest('label').className;
+                console.log(`Тумблер ${toggleType} переключен: ${this.checked ? 'включен' : 'выключен'}`);
+            });
+        });
+        
+        // Автоматическое переключение тумблеров для демонстрации
+        setTimeout(function autoToggle() {
+            const toggles = document.querySelectorAll('.ios-toggle-icon input, .ios-toggle-text input');
+            toggles.forEach(toggle => {
+                toggle.checked = !toggle.checked;
+                // Инициируем событие change
+                const event = new Event('change');
+                toggle.dispatchEvent(event);
+            });
+            
+            setTimeout(autoToggle, 3000);
+        }, 3000);
+    </script>
+</body>
+</html>

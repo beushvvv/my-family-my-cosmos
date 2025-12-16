@@ -1,2 +1,415 @@
-<!DOCTYPE html> 
-<html><head><title>Task 3</title></head><body></body></html> 
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Задание 3 - Вращающийся 3D-куб</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a2a3a, #0d1520);
+            color: #fff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            overflow-x: hidden;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 0 20px;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            background: linear-gradient(to right, #4facfe, #00f2fe);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 2px 10px rgba(0, 242, 254, 0.3);
+        }
+        
+        .subtitle {
+            font-size: 1.1rem;
+            color: #a0c8ff;
+            max-width: 600px;
+            line-height: 1.6;
+        }
+        
+        .scene {
+            width: 300px;
+            height: 300px;
+            perspective: 1000px;
+            margin: 0 auto 40px;
+        }
+        
+        .cube {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transform-style: preserve-3d;
+            transform: rotateX(-15deg) rotateY(-15deg);
+            animation: rotate 20s infinite linear;
+        }
+        
+        .face {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(3, 1fr);
+            gap: 2px;
+            padding: 2px;
+            box-sizing: border-box;
+        }
+        
+        /* Отдельные части каждой грани */
+        .part {
+            background-color: rgba(255, 255, 255, 0.9);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Разные цвета для частей граней */
+        .front .part {
+            background: linear-gradient(45deg, #ff6b6b, #ffa36c);
+        }
+        
+        .back .part {
+            background: linear-gradient(45deg, #4ecdc4, #44a08d);
+        }
+        
+        .right .part {
+            background: linear-gradient(45deg, #ffd166, #ffb347);
+        }
+        
+        .left .part {
+            background: linear-gradient(45deg, #06d6a0, #0cb48a);
+        }
+        
+        .top .part {
+            background: linear-gradient(45deg, #118ab2, #0a6a8a);
+        }
+        
+        .bottom .part {
+            background: linear-gradient(45deg, #9d4edd, #7b2cbf);
+        }
+        
+        /* Позиционирование граней куба */
+        .front {
+            transform: translateZ(150px);
+        }
+        
+        .back {
+            transform: translateZ(-150px) rotateY(180deg);
+        }
+        
+        .right {
+            transform: rotateY(90deg) translateZ(150px);
+        }
+        
+        .left {
+            transform: rotateY(-90deg) translateZ(150px);
+        }
+        
+        .top {
+            transform: rotateX(90deg) translateZ(150px);
+        }
+        
+        .bottom {
+            transform: rotateX(-90deg) translateZ(150px);
+        }
+        
+        /* Анимация вращения */
+        @keyframes rotate {
+            0% {
+                transform: rotateX(-15deg) rotateY(0deg);
+            }
+            100% {
+                transform: rotateX(-15deg) rotateY(360deg);
+            }
+        }
+        
+        .controls {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 30px;
+            padding: 0 20px;
+        }
+        
+        .control-btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .control-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+        
+        .info {
+            max-width: 800px;
+            margin-top: 40px;
+            padding: 25px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .info h2 {
+            color: #4facfe;
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+        
+        .info p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+            color: #c0d6ff;
+        }
+        
+        .info ul {
+            padding-left: 20px;
+            margin-bottom: 15px;
+        }
+        
+        .info li {
+            margin-bottom: 8px;
+            color: #c0d6ff;
+        }
+        
+        .footer {
+            margin-top: 40px;
+            text-align: center;
+            color: #88a6d6;
+            font-size: 0.9rem;
+            padding: 20px;
+        }
+        
+        @media (max-width: 768px) {
+            .scene {
+                width: 250px;
+                height: 250px;
+            }
+            
+            .front {
+                transform: translateZ(125px);
+            }
+            
+            .back {
+                transform: translateZ(-125px) rotateY(180deg);
+            }
+            
+            .right {
+                transform: rotateY(90deg) translateZ(125px);
+            }
+            
+            .left {
+                transform: rotateY(-90deg) translateZ(125px);
+            }
+            
+            .top {
+                transform: rotateX(90deg) translateZ(125px);
+            }
+            
+            .bottom {
+                transform: rotateX(-90deg) translateZ(125px);
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Вращающийся 3D-куб</h1>
+        <p class="subtitle">Каждая грань куба разделена на 9 частей. Куб медленно вращается бесконечно, демонстрируя 3D-эффекты с использованием только CSS и HTML.</p>
+    </div>
+    
+    <div class="scene">
+        <div class="cube">
+            <!-- Передняя грань -->
+            <div class="face front">
+                <div class="part"></div>
+                <div class="part"></div>
+                <div class="part"></div>
+                <div class="part"></div>
+                <div class="part"></div>
+                <div class="part"></div>
+                <div class="part"></div>
+                <div class="part"></div>
+                <div class="part"></div>
+            </div>
+            
+            <!-- Задняя грань -->
+            <div class="face back">
+                <div class="part"></div>
+                <div class="part"></div>
+                <div class="part"></div>
+                <div class="part"></div>
+                <div class="part"></div>
+                <div class="part"></div>
+                <div class="part"></div>
+                <div class="part"></div>
+                <div class="part"></div>
+            </div>
+            
+            <!-- Правая грань -->
+            <div class="face right">
+                <div class="part"></div>
+                <div class="part"></div>
+                <div class="part"></div>
+                <div class="part"></div>
+                <div class="part"></div>
+                <div class="part"></div>
+                <div class="part"></div>
+                <div class="part"></div>
+                <div class="part"></div>
+            </div>
+            
+            <!-- Левая грань -->
+            <div class="face left">
+                <div class="part"></div>
+                <div class="part"></div>
+                <div class="part"></div>
+                <div class="part"></div>
+                <div class="part"></div>
+                <div class="part"></div>
+                <div class="part"></div>
+                <div class="part"></div>
+                <div class="part"></div>
+            </div>
+            
+            <!-- Верхняя грань -->
+            <div class="face top">
+                <div class="part"></div>
+                <div class="part"></div>
+                <div class="part"></div>
+                <div class="part"></div>
+                <div class="part"></div>
+                <div class="part"></div>
+                <div class="part"></div>
+                <div class="part"></div>
+                <div class="part"></div>
+            </div>
+            
+            <!-- Нижняя грань -->
+            <div class="face bottom">
+                <div class="part"></div>
+                <div class="part"></div>
+                <div class="part"></div>
+                <div class="part"></div>
+                <div class="part"></div>
+                <div class="part"></div>
+                <div class="part"></div>
+                <div class="part"></div>
+                <div class="part"></div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="controls">
+        <button class="control-btn" id="pauseBtn">Пауза</button>
+        <button class="control-btn" id="resumeBtn">Продолжить</button>
+        <button class="control-btn" id="speedUpBtn">Ускорить</button>
+        <button class="control-btn" id="slowDownBtn">Замедлить</button>
+        <button class="control-btn" id="resetBtn">Сбросить</button>
+    </div>
+    
+    <div class="info">
+        <h2>Как работает этот 3D-куб:</h2>
+        <p>Этот куб создан с использованием чистого CSS и HTML без изображений или JavaScript для анимации (хотя JS добавлен для управления).</p>
+        
+        <p><strong>Технические детали:</strong></p>
+        <ul>
+            <li>Куб состоит из 6 граней, каждая из которых разделена на 9 частей с помощью CSS Grid</li>
+            <li>Каждая грань позиционируется в 3D-пространстве с помощью CSS-свойства <code>transform</code></li>
+            <li>Для создания 3D-эффекта используется <code>transform-style: preserve-3d</code> и <code>perspective</code></li>
+            <li>Анимация вращения реализована с помощью CSS-анимации <code>@keyframes</code></li>
+            <li>Каждая грань имеет уникальный градиентный фон для лучшего визуального восприятия</li>
+        </ul>
+        
+        <p>Вы можете управлять анимацией с помощью кнопок выше: ставить на паузу, ускорять или замедлять вращение.</p>
+    </div>
+    
+    <div class="footer">
+        <p>Задание 3: Создание 3D-куба с вращением и разделенными гранями</p>
+    </div>
+    
+    <script>
+        // Управление анимацией куба
+        const cube = document.querySelector('.cube');
+        const pauseBtn = document.getElementById('pauseBtn');
+        const resumeBtn = document.getElementById('resumeBtn');
+        const speedUpBtn = document.getElementById('speedUpBtn');
+        const slowDownBtn = document.getElementById('slowDownBtn');
+        const resetBtn = document.getElementById('resetBtn');
+        
+        let animationSpeed = 20;
+        let isPaused = false;
+        
+        // Функция для обновления скорости анимации
+        function updateAnimationSpeed() {
+            cube.style.animationDuration = `${animationSpeed}s`;
+        }
+        
+        // Пауза анимации
+        pauseBtn.addEventListener('click', () => {
+            cube.style.animationPlayState = 'paused';
+            isPaused = true;
+        });
+        
+        // Продолжить анимацию
+        resumeBtn.addEventListener('click', () => {
+            cube.style.animationPlayState = 'running';
+            isPaused = false;
+        });
+        
+        // Ускорить анимацию
+        speedUpBtn.addEventListener('click', () => {
+            if (animationSpeed > 2) {
+                animationSpeed -= 2;
+                updateAnimationSpeed();
+            }
+        });
+        
+        // Замедлить анимацию
+        slowDownBtn.addEventListener('click', () => {
+            animationSpeed += 2;
+            updateAnimationSpeed();
+        });
+        
+        // Сбросить анимацию
+        resetBtn.addEventListener('click', () => {
+            animationSpeed = 20;
+            updateAnimationSpeed();
+            cube.style.animationPlayState = 'running';
+            isPaused = false;
+        });
+        
+        // Инициализация
+        updateAnimationSpeed();
+    </script>
+</body>
+</html>

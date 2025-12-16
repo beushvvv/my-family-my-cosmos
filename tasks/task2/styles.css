@@ -1,0 +1,246 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f8f9fa;
+    color: #333;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 30px 20px;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #2c3e50;
+    font-weight: 600;
+}
+
+.ui-kit {
+    background-color: white;
+    border-radius: 12px;
+    padding: 30px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+}
+
+.form-group {
+    margin-bottom: 25px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #eee;
+}
+
+.form-group:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.form-group label:first-child {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: 600;
+    color: #2c3e50;
+    font-size: 16px;
+}
+
+/* Текстовое поле */
+input[type="text"], select, input[type="date"] {
+    width: 100%;
+    padding: 12px 15px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: border-color 0.3s;
+    background-color: white;
+}
+
+input[type="text"]:focus, select:focus, input[type="date"]:focus {
+    border-color: #3498db;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+}
+
+/* Кнопки */
+.primary-btn, .secondary-btn {
+    padding: 12px 24px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    margin-right: 10px;
+}
+
+.primary-btn {
+    background-color: #3498db;
+    color: white;
+}
+
+.primary-btn:hover {
+    background-color: #2980b9;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(52, 152, 219, 0.3);
+}
+
+.secondary-btn {
+    background-color: #f1f1f1;
+    color: #333;
+}
+
+.secondary-btn:hover {
+    background-color: #e0e0e0;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Чекбоксы и радиокнопки */
+.checkbox-group, .radio-group, .checkbox-label-group, .radio-label-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.checkbox-group input[type="checkbox"], 
+.radio-group input[type="radio"] {
+    margin-right: 10px;
+    width: 18px;
+    height: 18px;
+}
+
+.checkbox-group label, .radio-group label {
+    font-size: 16px;
+    cursor: pointer;
+}
+
+/* Стилизованные чекбоксы и радиокнопки */
+.checkbox-label-group input[type="checkbox"],
+.radio-label-group input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.labeled-checkbox, .labeled-radio {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    font-size: 16px;
+    user-select: none;
+    padding-left: 35px;
+    position: relative;
+}
+
+.checkmark, .radiomark {
+    position: absolute;
+    left: 0;
+    width: 22px;
+    height: 22px;
+    border: 2px solid #ddd;
+    border-radius: 4px;
+    background-color: white;
+    transition: all 0.3s;
+}
+
+.radiomark {
+    border-radius: 50%;
+}
+
+.labeled-checkbox:hover .checkmark,
+.labeled-radio:hover .radiomark {
+    border-color: #3498db;
+}
+
+.checkbox-label-group input:checked + .labeled-checkbox .checkmark {
+    background-color: #3498db;
+    border-color: #3498db;
+}
+
+.checkbox-label-group input:checked + .labeled-checkbox .checkmark::after {
+    content: "";
+    position: absolute;
+    left: 7px;
+    top: 3px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+
+.radio-label-group input:checked + .labeled-radio .radiomark {
+    border-color: #3498db;
+}
+
+.radio-label-group input:checked + .labeled-radio .radiomark::after {
+    content: "";
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: #3498db;
+}
+
+/* Диапазон */
+input[type="range"] {
+    width: 80%;
+    margin-right: 15px;
+    height: 8px;
+    border-radius: 4px;
+    background: #e0e0e0;
+    outline: none;
+    -webkit-appearance: none;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: #3498db;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+#rangeValue {
+    font-weight: 600;
+    color: #2c3e50;
+}
+
+/* Прогресс-бар */
+progress {
+    width: 80%;
+    height: 12px;
+    margin-right: 15px;
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+progress::-webkit-progress-bar {
+    background-color: #e0e0e0;
+    border-radius: 6px;
+}
+
+progress::-webkit-progress-value {
+    background-color: #2ecc71;
+    border-radius: 6px;
+    transition: width 0.5s;
+}
+
+.footer-note {
+    margin-top: 30px;
+    text-align: center;
+    color: #7f8c8d;
+    font-style: italic;
+}

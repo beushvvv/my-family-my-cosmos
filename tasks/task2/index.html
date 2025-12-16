@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Задание 2 - UI-комплект элементов</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>UI-комплект элементов</h1>
+        
+        <div class="ui-kit">
+            <!-- Текстовое поле -->
+            <div class="form-group">
+                <label for="textField">Текстовое поле:</label>
+                <input type="text" id="textField" placeholder="Введите текст">
+            </div>
+            
+            <!-- Кнопка -->
+            <div class="form-group">
+                <label>Кнопка:</label>
+                <button type="button" class="primary-btn">Отправить</button>
+                <button type="button" class="secondary-btn">Отмена</button>
+            </div>
+            
+            <!-- Выпадающий список -->
+            <div class="form-group">
+                <label for="dropdown">Выпадающий список:</label>
+                <select id="dropdown">
+                    <option value="">Выберите вариант</option>
+                    <option value="1">Вариант 1</option>
+                    <option value="2">Вариант 2</option>
+                    <option value="3">Вариант 3</option>
+                </select>
+            </div>
+            
+            <!-- Чекбокс -->
+            <div class="form-group">
+                <label>Чекбокс:</label>
+                <div class="checkbox-group">
+                    <input type="checkbox" id="checkbox1">
+                    <label for="checkbox1">Чекбокс 1</label>
+                </div>
+                <div class="checkbox-group">
+                    <input type="checkbox" id="checkbox2">
+                    <label for="checkbox2">Чекбокс 2</label>
+                </div>
+            </div>
+            
+            <!-- Радиокнопка -->
+            <div class="form-group">
+                <label>Радиокнопка:</label>
+                <div class="radio-group">
+                    <input type="radio" id="radio1" name="radioGroup">
+                    <label for="radio1">Вариант А</label>
+                </div>
+                <div class="radio-group">
+                    <input type="radio" id="radio2" name="radioGroup">
+                    <label for="radio2">Вариант Б</label>
+                </div>
+            </div>
+            
+            <!-- Метка с чекбоксом -->
+            <div class="form-group">
+                <label>Метка с чекбоксом:</label>
+                <div class="checkbox-label-group">
+                    <input type="checkbox" id="labeledCheckbox">
+                    <label for="labeledCheckbox" class="labeled-checkbox">
+                        <span class="checkmark"></span>
+                        Согласен с условиями
+                    </label>
+                </div>
+            </div>
+            
+            <!-- Метка с радиокнопкой -->
+            <div class="form-group">
+                <label>Метка с радиокнопкой:</label>
+                <div class="radio-label-group">
+                    <input type="radio" id="labeledRadio1" name="labeledRadio">
+                    <label for="labeledRadio1" class="labeled-radio">
+                        <span class="radiomark"></span>
+                        Ежемесячная подписка
+                    </label>
+                </div>
+                <div class="radio-label-group">
+                    <input type="radio" id="labeledRadio2" name="labeledRadio">
+                    <label for="labeledRadio2" class="labeled-radio">
+                        <span class="radiomark"></span>
+                        Годовая подписка
+                    </label>
+                </div>
+            </div>
+            
+            <!-- Выпадающий календарь ввода -->
+            <div class="form-group">
+                <label for="datePicker">Выпадающий календарь:</label>
+                <input type="date" id="datePicker">
+            </div>
+            
+            <!-- Диапазон -->
+            <div class="form-group">
+                <label for="range">Диапазон:</label>
+                <input type="range" id="range" min="0" max="100" value="50">
+                <span id="rangeValue">50</span>
+            </div>
+            
+            <!-- Прогресс-бар -->
+            <div class="form-group">
+                <label for="progressBar">Прогресс-бар:</label>
+                <progress id="progressBar" value="75" max="100"></progress>
+                <span>75%</span>
+            </div>
+        </div>
+        
+        <div class="footer-note">
+            <p>Этот UI-комплект включает все требуемые элементы с современным дизайном.</p>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
