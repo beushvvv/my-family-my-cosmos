@@ -1,2 +1,708 @@
-<!DOCTYPE html> 
-<html><head><title>������ �������</title></head><body></body></html> 
+<!DOCTYPE html>
+<html lang="ru" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Моя семья – мой космос | Личный кабинет</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/themes.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Стили для страницы личного кабинета */
+        .account-page {
+            padding: var(--spacing-xl) 0;
+        }
+        
+        .account-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--spacing-xl);
+            flex-wrap: wrap;
+            gap: var(--spacing-md);
+        }
+        
+        .account-title {
+            font-size: 2.5rem;
+            margin: 0;
+        }
+        
+        .logout-btn {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .account-content {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: var(--spacing-xl);
+        }
+        
+        .account-sidebar {
+            background-color: var(--color-bg-secondary);
+            border-radius: var(--border-radius-lg);
+            padding: var(--spacing-md);
+            box-shadow: var(--shadow);
+        }
+        
+        .user-profile {
+            text-align: center;
+            margin-bottom: var(--spacing-lg);
+            padding-bottom: var(--spacing-md);
+            border-bottom: 1px solid var(--color-border);
+        }
+        
+        .user-avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+            margin: 0 auto var(--spacing-sm);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 3rem;
+            color: white;
+        }
+        
+        .user-name {
+            font-size: 1.5rem;
+            margin-bottom: var(--spacing-xs);
+        }
+        
+        .user-email {
+            color: var(--color-text-secondary);
+            font-size: 0.9rem;
+        }
+        
+        .account-menu {
+            list-style: none;
+        }
+        
+        .account-menu-item {
+            margin-bottom: var(--spacing-xs);
+        }
+        
+        .account-menu-link {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem 1rem;
+            color: var(--color-text);
+            border-radius: var(--border-radius);
+            transition: var(--transition);
+        }
+        
+        .account-menu-link:hover,
+        .account-menu-link.active {
+            background-color: var(--color-primary);
+            color: white;
+        }
+        
+        .account-main {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-xl);
+        }
+        
+        .account-section {
+            background-color: var(--color-bg-secondary);
+            border-radius: var(--border-radius-lg);
+            padding: var(--spacing-lg);
+            box-shadow: var(--shadow);
+        }
+        
+        .section-title {
+            font-size: 1.5rem;
+            margin-bottom: var(--spacing-md);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .booking-form {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: var(--spacing-md);
+        }
+        
+        .form-group-full {
+            grid-column: span 2;
+        }
+        
+        .registered-competitions {
+            margin-top: var(--spacing-md);
+        }
+        
+        .competition-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: var(--spacing-md);
+            background-color: var(--color-bg);
+            border-radius: var(--border-radius);
+            margin-bottom: var(--spacing-sm);
+            border-left: 4px solid var(--color-secondary);
+        }
+        
+        .competition-info h4 {
+            margin-bottom: var(--spacing-xs);
+        }
+        
+        .competition-details {
+            display: flex;
+            gap: var(--spacing-md);
+            color: var(--color-text-secondary);
+            font-size: 0.9rem;
+        }
+        
+        .competition-actions {
+            display: flex;
+            gap: var(--spacing-sm);
+        }
+        
+        .empty-state {
+            text-align: center;
+            padding: var(--spacing-xl);
+            color: var(--color-text-secondary);
+        }
+        
+        .empty-state i {
+            font-size: 3rem;
+            margin-bottom: var(--spacing-sm);
+            color: var(--color-border);
+        }
+        
+        .date-input-wrapper {
+            position: relative;
+        }
+        
+        .date-input-wrapper i {
+            position: absolute;
+            right: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--color-text-secondary);
+        }
+        
+        @media (max-width: 991px) {
+            .account-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .booking-form {
+                grid-template-columns: 1fr;
+            }
+            
+            .form-group-full {
+                grid-column: span 1;
+            }
+        }
+        
+        @media (max-width: 767px) {
+            .account-title {
+                font-size: 2rem;
+            }
+            
+            .account-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .competition-item {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: var(--spacing-sm);
+            }
+            
+            .competition-actions {
+                width: 100%;
+                justify-content: flex-end;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Шапка сайта -->
+    <header class="header">
+        <div class="container">
+            <div class="header__inner">
+                <!-- Логотип -->
+                <div class="logo">
+                    <a href="index.html" class="logo__link">
+                        <div class="logo__icon">
+                            <i class="fas fa-rocket"></i>
+                        </div>
+                        <div class="logo__text">
+                            <span class="logo__title">Моя семья</span>
+                            <span class="logo__subtitle">мой космос</span>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- Основное меню (без ссылки Регистрация) -->
+                <nav class="nav">
+                    <ul class="nav__list">
+                        <li class="nav__item"><a href="index.html" class="nav__link">Главная</a></li>
+                        <li class="nav__item"><a href="index.html#about" class="nav__link">О нас</a></li>
+                        <li class="nav__item"><a href="index.html#competitions" class="nav__link">Конкурсы</a></li>
+                        <li class="nav__item"><a href="schedule.html" class="nav__link">Расписание</a></li>
+                        <li class="nav__item"><a href="index.html#reviews" class="nav__link">Отзывы</a></li>
+                        <li class="nav__item"><a href="index.html#contact" class="nav__link">Контакты</a></li>
+                        <li class="nav__item"><a href="account.html" class="nav__link active">Личный кабинет</a></li>
+                        <li class="nav__item">
+                            <a href="index.html" class="btn btn--outline logout-btn">
+                                <i class="fas fa-sign-out-alt"></i> Выйти
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+
+                <!-- Бургер-меню для мобильных -->
+                <button class="burger" id="burger" aria-label="Меню">
+                    <span class="burger__line"></span>
+                    <span class="burger__line"></span>
+                    <span class="burger__line"></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="account-page">
+        <div class="container">
+            <div class="account-header">
+                <h1 class="account-title">Личный кабинет</h1>
+                <a href="index.html" class="btn btn--outline logout-btn">
+                    <i class="fas fa-sign-out-alt"></i> Выйти
+                </a>
+            </div>
+
+            <div class="account-content">
+                <!-- Боковая панель -->
+                <aside class="account-sidebar">
+                    <div class="user-profile">
+                        <div class="user-avatar">
+                            <i class="fas fa-user-astronaut"></i>
+                        </div>
+                        <h2 class="user-name">Иван Иванов</h2>
+                        <p class="user-email">ivan@example.com</p>
+                    </div>
+                    
+                    <ul class="account-menu">
+                        <li class="account-menu-item">
+                            <a href="#booking" class="account-menu-link active">
+                                <i class="fas fa-calendar-plus"></i>
+                                <span>Запись на конкурс</span>
+                            </a>
+                        </li>
+                        <li class="account-menu-item">
+                            <a href="#registrations" class="account-menu-link">
+                                <i class="fas fa-list-alt"></i>
+                                <span>Мои записи</span>
+                            </a>
+                        </li>
+                        <li class="account-menu-item">
+                            <a href="#profile" class="account-menu-link">
+                                <i class="fas fa-user-cog"></i>
+                                <span>Настройки профиля</span>
+                            </a>
+                        </li>
+                        <li class="account-menu-item">
+                            <a href="#notifications" class="account-menu-link">
+                                <i class="fas fa-bell"></i>
+                                <span>Уведомления</span>
+                            </a>
+                        </li>
+                    </ul>
+                </aside>
+
+                <!-- Основное содержимое -->
+                <div class="account-main">
+                    <!-- Секция записи на конкурс -->
+                    <section id="booking" class="account-section">
+                        <h2 class="section-title">
+                            <i class="fas fa-calendar-plus"></i>
+                            Запись на конкурс
+                        </h2>
+                        
+                        <form id="bookingForm" class="booking-form">
+                            <div class="form-group">
+                                <label for="competitionSelect" class="form-label required">Конкурс</label>
+                                <select id="competitionSelect" class="form-input" required>
+                                    <option value="">Выберите конкурс</option>
+                                    <option value="1">Семейный рисунок "Космос глазами детей"</option>
+                                    <option value="2">Робототехника для всей семьи</option>
+                                    <option value="3">Космическая кухня</option>
+                                    <option value="4">Космическая мелодия</option>
+                                    <option value="5">Космическое видео</option>
+                                    <option value="6">Космический танец</option>
+                                    <option value="7">Космический костюм</option>
+                                    <option value="8">Космический рассказ</option>
+                                    <option value="9">Космическая фотография</option>
+                                    <option value="10">Космическая головоломка</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="bookingDate" class="form-label required">Дата</label>
+                                <div class="date-input-wrapper">
+                                    <input type="date" id="bookingDate" class="form-input" value="2024-07-08" readonly required>
+                                    <i class="fas fa-calendar-alt"></i>
+                                </div>
+                                <div class="form-hint">Единственная доступная дата</div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="bookingTime" class="form-label required">Время</label>
+                                <select id="bookingTime" class="form-input" required>
+                                    <option value="">Выберите время</option>
+                                    <option value="9:00">9:00</option>
+                                    <option value="10:00">10:00</option>
+                                    <option value="11:00">11:00</option>
+                                    <option value="12:00">12:00</option>
+                                    <option value="13:00">13:00</option>
+                                    <option value="14:00">14:00</option>
+                                    <option value="15:00">15:00</option>
+                                    <option value="16:00">16:00</option>
+                                    <option value="17:00">17:00</option>
+                                    <option value="18:00">18:00</option>
+                                    <option value="19:00">19:00</option>
+                                    <option value="20:00">20:00</option>
+                                    <option value="21:00">21:00</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="participantsCount" class="form-label required">Количество человек</label>
+                                <input type="number" id="participantsCount" class="form-input" min="1" max="10" value="1" required>
+                            </div>
+                            
+                            <div class="form-group form-group-full">
+                                <label for="specialRequests" class="form-label">Особые пожелания</label>
+                                <textarea id="specialRequests" class="form-input" rows="3" placeholder="Укажите особые пожелания или требования..."></textarea>
+                            </div>
+                            
+                            <div class="form-group form-group-full">
+                                <button type="submit" class="btn btn--primary btn--lg">
+                                    <i class="fas fa-check-circle"></i>
+                                    Записаться на конкурс
+                                </button>
+                            </div>
+                        </form>
+                    </section>
+
+                    <!-- Секция моих записей -->
+                    <section id="registrations" class="account-section">
+                        <h2 class="section-title">
+                            <i class="fas fa-list-alt"></i>
+                            Мои записи
+                        </h2>
+                        
+                        <div class="registered-competitions">
+                            <div class="competition-item">
+                                <div class="competition-info">
+                                    <h4>Семейный рисунок "Космос глазами детей"</h4>
+                                    <div class="competition-details">
+                                        <span><i class="fas fa-calendar"></i> 8 июля 2024</span>
+                                        <span><i class="fas fa-clock"></i> 14:00-15:00</span>
+                                        <span><i class="fas fa-users"></i> 3 человека</span>
+                                    </div>
+                                </div>
+                                <div class="competition-actions">
+                                    <button class="btn btn--outline btn--sm edit-booking">
+                                        <i class="fas fa-edit"></i> Изменить
+                                    </button>
+                                    <button class="btn btn--outline btn--danger btn--sm cancel-booking">
+                                        <i class="fas fa-times"></i> Отменить
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <div class="competition-item">
+                                <div class="competition-info">
+                                    <h4>Космическая кухня</h4>
+                                    <div class="competition-details">
+                                        <span><i class="fas fa-calendar"></i> 8 июля 2024</span>
+                                        <span><i class="fas fa-clock"></i> 16:00-17:00</span>
+                                        <span><i class="fas fa-users"></i> 2 человека</span>
+                                    </div>
+                                </div>
+                                <div class="competition-actions">
+                                    <button class="btn btn--outline btn--sm edit-booking">
+                                        <i class="fas fa-edit"></i> Изменить
+                                    </button>
+                                    <button class="btn btn--outline btn--danger btn--sm cancel-booking">
+                                        <i class="fas fa-times"></i> Отменить
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="empty-state" id="noRegistrations" style="display: none;">
+                            <i class="fas fa-calendar-times"></i>
+                            <h3>У вас нет записей на конкурсы</h3>
+                            <p>Запишитесь на конкурс, чтобы увидеть его здесь</p>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Подвал сайта -->
+    <footer class="footer" id="contact">
+        <div class="container">
+            <div class="footer__inner">
+                <div class="footer__contacts">
+                    <h3 class="footer__title">Контакты</h3>
+                    <div class="footer__contact-item">
+                        <i class="fas fa-phone"></i>
+                        <a href="tel:+74842234567" class="footer__link">+7 (4842) 23-45-67</a>
+                    </div>
+                    <div class="footer__contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <a href="mailto:family@cosmos.ru" class="footer__link">family@cosmos.ru</a>
+                    </div>
+                </div>
+                
+                <div class="footer__navigation">
+                    <h3 class="footer__title">Навигация</h3>
+                    <ul class="footer__nav-list">
+                        <li class="footer__nav-item"><a href="index.html" class="footer__link">Главная</a></li>
+                        <li class="footer__nav-item"><a href="index-light.html" class="footer__link">Главная-светлая</a></li>
+                        <li class="footer__nav-item"><a href="registration.html" class="footer__link">Регистрация</a></li>
+                        <li class="footer__nav-item"><a href="competition.html" class="footer__link">Конкурс</a></li>
+                        <li class="footer__nav-item"><a href="account.html" class="footer__link active">Личный кабинет</a></li>
+                        <li class="footer__nav-item"><a href="404.html" class="footer__link">Страница не найдена</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer__social">
+                    <h3 class="footer__title">Мы в соцсетях</h3>
+                    <div class="social-icons">
+                        <a href="#" class="social-icon" aria-label="ВКонтакте">
+                            <i class="fab fa-vk"></i>
+                        </a>
+                        <a href="#" class="social-icon" aria-label="Telegram">
+                            <i class="fab fa-telegram"></i>
+                        </a>
+                        <a href="#" class="social-icon" aria-label="YouTube">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                        <a href="#" class="social-icon" aria-label="Instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer__bottom">
+                <p class="footer__copyright">© 2024 "Моя семья – мой космос". Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/form-validation.js"></script>
+    <script>
+        // JavaScript для личного кабинета
+        document.addEventListener('DOMContentLoaded', function() {
+            // Навигация в боковом меню
+            const menuLinks = document.querySelectorAll('.account-menu-link');
+            const sections = document.querySelectorAll('.account-section');
+            
+            menuLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // Убираем активный класс у всех ссылок
+                    menuLinks.forEach(l => l.classList.remove('active'));
+                    
+                    // Добавляем активный класс к текущей ссылке
+                    this.classList.add('active');
+                    
+                    // Получаем ID целевой секции
+                    const targetId = this.getAttribute('href');
+                    
+                    // Скрываем все секции
+                    sections.forEach(section => {
+                        section.style.display = 'none';
+                    });
+                    
+                    // Показываем целевую секцию
+                    const targetSection = document.querySelector(targetId);
+                    if (targetSection) {
+                        targetSection.style.display = 'block';
+                    }
+                });
+            });
+            
+            // Показываем первую секцию по умолчанию
+            if (sections.length > 0) {
+                sections[0].style.display = 'block';
+                if (sections.length > 1) {
+                    sections[1].style.display = 'none';
+                }
+            }
+            
+            // Форма записи на конкурс
+            const bookingForm = document.getElementById('bookingForm');
+            const competitionSelect = document.getElementById('competitionSelect');
+            const bookingTime = document.getElementById('bookingTime');
+            
+            // Заполняем время с 9:00 до 21:00
+            for (let hour = 9; hour <= 21; hour++) {
+                const time = `${hour}:00`;
+                const option = document.createElement('option');
+                option.value = time;
+                option.textContent = time;
+                bookingTime.appendChild(option);
+            }
+            
+            bookingForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Валидация формы
+                let isValid = true;
+                const errorMessages = [];
+                
+                if (!competitionSelect.value) {
+                    isValid = false;
+                    errorMessages.push('Выберите конкурс');
+                    competitionSelect.classList.add('invalid');
+                } else {
+                    competitionSelect.classList.remove('invalid');
+                }
+                
+                if (!bookingTime.value) {
+                    isValid = false;
+                    errorMessages.push('Выберите время');
+                    bookingTime.classList.add('invalid');
+                } else {
+                    bookingTime.classList.remove('invalid');
+                }
+                
+                const participantsCount = document.getElementById('participantsCount');
+                if (!participantsCount.value || participantsCount.value < 1 || participantsCount.value > 10) {
+                    isValid = false;
+                    errorMessages.push('Укажите количество человек от 1 до 10');
+                    participantsCount.classList.add('invalid');
+                } else {
+                    participantsCount.classList.remove('invalid');
+                }
+                
+                if (isValid) {
+                    // Имитация успешной записи
+                    const selectedCompetition = competitionSelect.options[competitionSelect.selectedIndex].text;
+                    
+                    // Создаем новую запись
+                    const registrationsSection = document.getElementById('registrations');
+                    const registrationsList = registrationsSection.querySelector('.registered-competitions');
+                    const noRegistrations = document.getElementById('noRegistrations');
+                    
+                    if (noRegistrations.style.display === 'block') {
+                        noRegistrations.style.display = 'none';
+                    }
+                    
+                    const newRegistration = document.createElement('div');
+                    newRegistration.className = 'competition-item';
+                    newRegistration.innerHTML = `
+                        <div class="competition-info">
+                            <h4>${selectedCompetition}</h4>
+                            <div class="competition-details">
+                                <span><i class="fas fa-calendar"></i> 8 июля 2024</span>
+                                <span><i class="fas fa-clock"></i> ${bookingTime.value}</span>
+                                <span><i class="fas fa-users"></i> ${participantsCount.value} человек</span>
+                            </div>
+                        </div>
+                        <div class="competition-actions">
+                            <button class="btn btn--outline btn--sm edit-booking">
+                                <i class="fas fa-edit"></i> Изменить
+                            </button>
+                            <button class="btn btn--outline btn--danger btn--sm cancel-booking">
+                                <i class="fas fa-times"></i> Отменить
+                            </button>
+                        </div>
+                    `;
+                    
+                    registrationsList.insertBefore(newRegistration, registrationsList.firstChild);
+                    
+                    // Добавляем обработчики для новых кнопок
+                    const editBtn = newRegistration.querySelector('.edit-booking');
+                    const cancelBtn = newRegistration.querySelector('.cancel-booking');
+                    
+                    editBtn.addEventListener('click', function() {
+                        alert('Функция изменения записи в разработке');
+                    });
+                    
+                    cancelBtn.addEventListener('click', function() {
+                        if (confirm('Вы уверены, что хотите отменить запись на этот конкурс?')) {
+                            newRegistration.remove();
+                            
+                            // Проверяем, остались ли записи
+                            const remainingRegistrations = registrationsList.querySelectorAll('.competition-item');
+                            if (remainingRegistrations.length === 0) {
+                                noRegistrations.style.display = 'block';
+                            }
+                        }
+                    });
+                    
+                    // Показываем сообщение об успехе
+                    alert(`Вы успешно записались на конкурс "${selectedCompetition}" на ${bookingTime.value}`);
+                    
+                    // Сбрасываем форму
+                    bookingForm.reset();
+                    document.getElementById('participantsCount').value = 1;
+                } else {
+                    // Показываем ошибки
+                    alert('Ошибка: ' + errorMessages.join(', '));
+                }
+            });
+            
+            // Обработчики для кнопок отмены записей
+            const cancelButtons = document.querySelectorAll('.cancel-booking');
+            cancelButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const competitionItem = this.closest('.competition-item');
+                    const competitionName = competitionItem.querySelector('h4').textContent;
+                    
+                    if (confirm(`Вы уверены, что хотите отменить запись на конкурс "${competitionName}"?`)) {
+                        competitionItem.remove();
+                        
+                        // Проверяем, остались ли записи
+                        const registrationsList = document.querySelector('.registered-competitions');
+                        const remainingRegistrations = registrationsList.querySelectorAll('.competition-item');
+                        const noRegistrations = document.getElementById('noRegistrations');
+                        
+                        if (remainingRegistrations.length === 0) {
+                            noRegistrations.style.display = 'block';
+                        }
+                    }
+                });
+            });
+            
+            // Обработчики для кнопок изменения записей
+            const editButtons = document.querySelectorAll('.edit-booking');
+            editButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    alert('Функция изменения записи в разработке');
+                });
+            });
+            
+            // Проверяем, есть ли записи при загрузке
+            const registrationsList = document.querySelector('.registered-competitions');
+            const initialRegistrations = registrationsList.querySelectorAll('.competition-item');
+            const noRegistrations = document.getElementById('noRegistrations');
+            
+            if (initialRegistrations.length === 0) {
+                noRegistrations.style.display = 'block';
+            }
+        });
+    </script>
+</body>
+</html>

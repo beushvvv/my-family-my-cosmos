@@ -1,2 +1,479 @@
-<!DOCTYPE html> 
-<html><head><title>����������</title></head><body></body></html> 
+<!DOCTYPE html>
+<html lang="ru" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Моя семья – мой космос | Расписание конкурсов</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/themes.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Стили для страницы расписания */
+        .schedule-page {
+            padding: var(--spacing-xl) 0;
+        }
+        
+        .page-header {
+            text-align: center;
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .page-title {
+            font-size: 2.5rem;
+            margin-bottom: var(--spacing-sm);
+            color: var(--color-text);
+        }
+        
+        .page-subtitle {
+            color: var(--color-text-secondary);
+            font-size: 1.1rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .schedule-container {
+            overflow-x: auto;
+            margin-bottom: var(--spacing-xl);
+            border-radius: var(--border-radius-lg);
+            box-shadow: var(--shadow);
+            background-color: var(--color-bg-secondary);
+        }
+        
+        .schedule-table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 800px;
+        }
+        
+        .schedule-table th,
+        .schedule-table td {
+            padding: 1rem;
+            text-align: center;
+            border: 1px solid var(--color-border);
+        }
+        
+        .schedule-table th {
+            background-color: var(--color-primary);
+            color: white;
+            font-weight: 600;
+            position: sticky;
+            top: 0;
+        }
+        
+        .time-header {
+            background-color: var(--color-secondary) !important;
+        }
+        
+        .schedule-table td {
+            height: 80px;
+            vertical-align: middle;
+        }
+        
+        .competition-name {
+            font-weight: 500;
+            text-align: left;
+            padding-left: 1.5rem;
+            background-color: var(--color-bg-secondary);
+            position: sticky;
+            left: 0;
+        }
+        
+        .slot-cell {
+            width: 100px;
+            height: 80px;
+            position: relative;
+        }
+        
+        .slot-content {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .slot-places {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+        
+        .slot-status {
+            font-size: 0.8rem;
+            padding: 0.125rem 0.5rem;
+            border-radius: var(--border-radius-sm);
+        }
+        
+        .slot-available {
+            background-color: rgba(76, 175, 80, 0.2);
+            color: var(--color-success);
+        }
+        
+        .slot-limited {
+            background-color: rgba(255, 152, 0, 0.2);
+            color: var(--color-warning);
+        }
+        
+        .slot-full {
+            background-color: rgba(244, 67, 54, 0.2);
+            color: var(--color-error);
+            text-decoration: line-through;
+        }
+        
+        .legend {
+            display: flex;
+            justify-content: center;
+            gap: var(--spacing-md);
+            margin-top: var(--spacing-lg);
+            flex-wrap: wrap;
+        }
+        
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .legend-color {
+            width: 20px;
+            height: 20px;
+            border-radius: var(--border-radius-sm);
+        }
+        
+        .legend-available {
+            background-color: rgba(76, 175, 80, 0.2);
+            border: 2px solid var(--color-success);
+        }
+        
+        .legend-limited {
+            background-color: rgba(255, 152, 0, 0.2);
+            border: 2px solid var(--color-warning);
+        }
+        
+        .legend-full {
+            background-color: rgba(244, 67, 54, 0.2);
+            border: 2px solid var(--color-error);
+        }
+        
+        .schedule-info {
+            margin-top: var(--spacing-xl);
+            padding: var(--spacing-md);
+            background-color: var(--color-bg-secondary);
+            border-radius: var(--border-radius-lg);
+            border-left: 4px solid var(--color-secondary);
+        }
+        
+        .info-title {
+            color: var(--color-secondary);
+            margin-bottom: var(--spacing-sm);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        @media (max-width: 991px) {
+            .page-title {
+                font-size: 2rem;
+            }
+            
+            .schedule-table th,
+            .schedule-table td {
+                padding: 0.75rem 0.5rem;
+            }
+            
+            .slot-cell {
+                width: 80px;
+                height: 70px;
+            }
+        }
+        
+        @media (max-width: 767px) {
+            .page-title {
+                font-size: 1.75rem;
+            }
+            
+            .schedule-table th,
+            .schedule-table td {
+                padding: 0.5rem 0.25rem;
+                font-size: 0.9rem;
+            }
+            
+            .slot-cell {
+                width: 70px;
+                height: 60px;
+            }
+            
+            .slot-places {
+                font-size: 1rem;
+            }
+            
+            .slot-status {
+                font-size: 0.7rem;
+            }
+            
+            .legend {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: var(--spacing-sm);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Шапка сайта -->
+    <header class="header">
+        <div class="container">
+            <div class="header__inner">
+                <!-- Логотип -->
+                <div class="logo">
+                    <a href="index.html" class="logo__link">
+                        <div class="logo__icon">
+                            <i class="fas fa-rocket"></i>
+                        </div>
+                        <div class="logo__text">
+                            <span class="logo__title">Моя семья</span>
+                            <span class="logo__subtitle">мой космос</span>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- Основное меню -->
+                <nav class="nav">
+                    <ul class="nav__list">
+                        <li class="nav__item"><a href="index.html" class="nav__link">Главная</a></li>
+                        <li class="nav__item"><a href="index.html#about" class="nav__link">О нас</a></li>
+                        <li class="nav__item"><a href="index.html#competitions" class="nav__link">Конкурсы</a></li>
+                        <li class="nav__item"><a href="index.html#search" class="nav__link">Поиск</a></li>
+                        <li class="nav__item"><a href="index.html#reviews" class="nav__link">Отзывы</a></li>
+                        <li class="nav__item"><a href="index.html#contact" class="nav__link">Контакты</a></li>
+                        <li class="nav__item"><a href="registration.html" class="nav__link">Регистрация</a></li>
+                        <li class="nav__item"><a href="index.html#auth" class="nav__link">Авторизация</a></li>
+                        <li class="nav__item"><a href="account.html" class="nav__link">Личный кабинет</a></li>
+                    </ul>
+                </nav>
+
+                <!-- Бургер-меню для мобильных -->
+                <button class="burger" id="burger" aria-label="Меню">
+                    <span class="burger__line"></span>
+                    <span class="burger__line"></span>
+                    <span class="burger__line"></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="schedule-page">
+        <div class="container">
+            <div class="page-header">
+                <h1 class="page-title">Расписание конкурсов</h1>
+                <p class="page-subtitle">Запишитесь на понравившийся конкурс. Свободные места отображаются в ячейках таблицы</p>
+            </div>
+
+            <div class="schedule-container">
+                <table class="schedule-table">
+                    <thead>
+                        <tr>
+                            <th>Конкурс</th>
+                            <th class="time-header">9:00-10:00</th>
+                            <th class="time-header">10:00-11:00</th>
+                            <th class="time-header">11:00-12:00</th>
+                            <th class="time-header">12:00-13:00</th>
+                            <th class="time-header">13:00-14:00</th>
+                            <th class="time-header">14:00-15:00</th>
+                            <th class="time-header">15:00-16:00</th>
+                            <th class="time-header">16:00-17:00</th>
+                            <th class="time-header">17:00-18:00</th>
+                            <th class="time-header">18:00-19:00</th>
+                            <th class="time-header">19:00-20:00</th>
+                            <th class="time-header">20:00-21:00</th>
+                        </tr>
+                    </thead>
+                    <tbody id="scheduleBody">
+                        <!-- Данные будут заполнены JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="legend">
+                <div class="legend-item">
+                    <div class="legend-color legend-available"></div>
+                    <span>Много свободных мест (10+)</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color legend-limited"></div>
+                    <span>Мало свободных мест (1-9)</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color legend-full"></div>
+                    <span>Нет свободных мест</span>
+                </div>
+            </div>
+
+            <div class="schedule-info">
+                <h3 class="info-title">
+                    <i class="fas fa-info-circle"></i>
+                    Как записаться на конкурс?
+                </h3>
+                <p>Для записи на конкурс выполните следующие шаги:</p>
+                <ol>
+                    <li>Найдите интересующий вас конкурс в таблице</li>
+                    <li>Выберите удобное время (ячейка с указанием количества свободных мест)</li>
+                    <li>Перейдите в <a href="account.html">Личный кабинет</a></li>
+                    <li>Заполните форму записи на выбранный конкурс</li>
+                </ol>
+                <p class="note">Обратите внимание: запись на конкурс возможна только для зарегистрированных пользователей.</p>
+            </div>
+        </div>
+    </main>
+
+    <!-- Подвал сайта -->
+    <footer class="footer" id="contact">
+        <div class="container">
+            <div class="footer__inner">
+                <div class="footer__contacts">
+                    <h3 class="footer__title">Контакты</h3>
+                    <div class="footer__contact-item">
+                        <i class="fas fa-phone"></i>
+                        <a href="tel:+74842234567" class="footer__link">+7 (4842) 23-45-67</a>
+                    </div>
+                    <div class="footer__contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <a href="mailto:family@cosmos.ru" class="footer__link">family@cosmos.ru</a>
+                    </div>
+                </div>
+                
+                <div class="footer__navigation">
+                    <h3 class="footer__title">Навигация</h3>
+                    <ul class="footer__nav-list">
+                        <li class="footer__nav-item"><a href="index.html" class="footer__link">Главная</a></li>
+                        <li class="footer__nav-item"><a href="index-light.html" class="footer__link">Главная-светлая</a></li>
+                        <li class="footer__nav-item"><a href="registration.html" class="footer__link">Регистрация</a></li>
+                        <li class="footer__nav-item"><a href="competition.html" class="footer__link">Конкурс</a></li>
+                        <li class="footer__nav-item"><a href="account.html" class="footer__link">Личный кабинет</a></li>
+                        <li class="footer__nav-item"><a href="404.html" class="footer__link">Страница не найдена</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer__social">
+                    <h3 class="footer__title">Мы в соцсетях</h3>
+                    <div class="social-icons">
+                        <a href="#" class="social-icon" aria-label="ВКонтакте">
+                            <i class="fab fa-vk"></i>
+                        </a>
+                        <a href="#" class="social-icon" aria-label="Telegram">
+                            <i class="fab fa-telegram"></i>
+                        </a>
+                        <a href="#" class="social-icon" aria-label="YouTube">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                        <a href="#" class="social-icon" aria-label="Instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer__bottom">
+                <p class="footer__copyright">© 2024 "Моя семья – мой космос". Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script>
+        // Данные для расписания
+        const competitions = [
+            "Семейный рисунок 'Космос глазами детей'",
+            "Робототехника для всей семьи", 
+            "Космическая кухня",
+            "Космическая мелодия",
+            "Космическое видео",
+            "Космический танец",
+            "Космический костюм",
+            "Космический рассказ",
+            "Космическая фотография",
+            "Космическая головоломка"
+        ];
+        
+        const timeSlots = [
+            "9:00-10:00", "10:00-11:00", "11:00-12:00", 
+            "12:00-13:00", "13:00-14:00", "14:00-15:00",
+            "15:00-16:00", "16:00-17:00", "17:00-18:00",
+            "18:00-19:00", "19:00-20:00", "20:00-21:00"
+        ];
+        
+        // Генерация случайных данных для расписания
+        function generateRandomPlaces() {
+            // 0 = нет мест, 1-9 = мало мест, 10+ = много мест
+            const rand = Math.random();
+            if (rand < 0.3) return 0; // 30% - нет мест
+            if (rand < 0.7) return Math.floor(Math.random() * 9) + 1; // 40% - мало мест
+            return Math.floor(Math.random() * 20) + 10; // 30% - много мест
+        }
+        
+        // Создание таблицы расписания
+        function createScheduleTable() {
+            const scheduleBody = document.getElementById('scheduleBody');
+            scheduleBody.innerHTML = '';
+            
+            competitions.forEach(competition => {
+                const row = document.createElement('tr');
+                
+                // Ячейка с названием конкурса
+                const nameCell = document.createElement('td');
+                nameCell.className = 'competition-name';
+                nameCell.textContent = competition;
+                row.appendChild(nameCell);
+                
+                // Ячейки с временными слотами
+                timeSlots.forEach(() => {
+                    const places = generateRandomPlaces();
+                    const slotCell = document.createElement('td');
+                    slotCell.className = 'slot-cell';
+                    
+                    const slotContent = document.createElement('div');
+                    slotContent.className = 'slot-content';
+                    
+                    const placesSpan = document.createElement('div');
+                    placesSpan.className = 'slot-places';
+                    placesSpan.textContent = places;
+                    
+                    const statusSpan = document.createElement('div');
+                    statusSpan.className = 'slot-status';
+                    
+                    if (places === 0) {
+                        statusSpan.textContent = 'Нет мест';
+                        statusSpan.classList.add('slot-full');
+                    } else if (places < 10) {
+                        statusSpan.textContent = 'Мало мест';
+                        statusSpan.classList.add('slot-limited');
+                    } else {
+                        statusSpan.textContent = 'Есть места';
+                        statusSpan.classList.add('slot-available');
+                    }
+                    
+                    slotContent.appendChild(placesSpan);
+                    slotContent.appendChild(statusSpan);
+                    slotCell.appendChild(slotContent);
+                    row.appendChild(slotCell);
+                });
+                
+                scheduleBody.appendChild(row);
+            });
+        }
+        
+        // Инициализация при загрузке страницы
+        document.addEventListener('DOMContentLoaded', function() {
+            createScheduleTable();
+            
+            // Обновление расписания каждые 30 секунд (имитация обновления данных)
+            setInterval(createScheduleTable, 30000);
+        });
+    </script>
+</body>
+</html>

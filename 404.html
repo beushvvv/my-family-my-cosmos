@@ -1,2 +1,271 @@
-<!DOCTYPE html> 
-<html><head><title>404</title></head><body></body></html> 
+<!DOCTYPE html>
+<html lang="ru" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Моя семья – мой космос | Страница не найдена</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/themes.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Стили для страницы 404 */
+        .error-page {
+            min-height: 70vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: var(--spacing-xl) 0;
+        }
+        
+        .error-content {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .error-code {
+            font-size: 8rem;
+            font-weight: 700;
+            margin-bottom: var(--spacing-sm);
+            background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            line-height: 1;
+        }
+        
+        .error-title {
+            font-size: 2.5rem;
+            margin-bottom: var(--spacing-md);
+            color: var(--color-text);
+        }
+        
+        .error-message {
+            font-size: 1.2rem;
+            color: var(--color-text-secondary);
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .error-actions {
+            display: flex;
+            justify-content: center;
+            gap: var(--spacing-md);
+            margin-bottom: var(--spacing-xl);
+            flex-wrap: wrap;
+        }
+        
+        .error-search {
+            margin-top: var(--spacing-xl);
+            max-width: 400px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .search-form-404 {
+            display: flex;
+            gap: var(--spacing-sm);
+        }
+        
+        .search-input-404 {
+            flex: 1;
+        }
+        
+        @media (max-width: 767px) {
+            .error-code {
+                font-size: 6rem;
+            }
+            
+            .error-title {
+                font-size: 2rem;
+            }
+            
+            .error-actions {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .search-form-404 {
+                flex-direction: column;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .error-code {
+                font-size: 4rem;
+            }
+            
+            .error-title {
+                font-size: 1.5rem;
+            }
+            
+            .error-message {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Шапка сайта -->
+    <header class="header">
+        <div class="container">
+            <div class="header__inner">
+                <!-- Логотип -->
+                <div class="logo">
+                    <a href="index.html" class="logo__link">
+                        <div class="logo__icon">
+                            <i class="fas fa-rocket"></i>
+                        </div>
+                        <div class="logo__text">
+                            <span class="logo__title">Моя семья</span>
+                            <span class="logo__subtitle">мой космос</span>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- Основное меню -->
+                <nav class="nav">
+                    <ul class="nav__list">
+                        <li class="nav__item"><a href="index.html" class="nav__link">Главная</a></li>
+                        <li class="nav__item"><a href="index.html#about" class="nav__link">О нас</a></li>
+                        <li class="nav__item"><a href="index.html#competitions" class="nav__link">Конкурсы</a></li>
+                        <li class="nav__item"><a href="index.html#search" class="nav__link">Поиск</a></li>
+                        <li class="nav__item"><a href="index.html#reviews" class="nav__link">Отзывы</a></li>
+                        <li class="nav__item"><a href="index.html#contact" class="nav__link">Контакты</a></li>
+                        <li class="nav__item"><a href="registration.html" class="nav__link">Регистрация</a></li>
+                        <li class="nav__item"><a href="index.html#auth" class="nav__link">Авторизация</a></li>
+                        <li class="nav__item"><a href="account.html" class="nav__link">Личный кабинет</a></li>
+                    </ul>
+                </nav>
+
+                <!-- Бургер-меню для мобильных -->
+                <button class="burger" id="burger" aria-label="Меню">
+                    <span class="burger__line"></span>
+                    <span class="burger__line"></span>
+                    <span class="burger__line"></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="error-page">
+            <div class="container">
+                <div class="error-content">
+                    <div class="error-code">404</div>
+                    <h1 class="error-title">Встреча не найдена</h1>
+                    <p class="error-message">
+                        К сожалению, страница, которую вы ищете, не существует или была перемещена.
+                        Возможно, конкурс уже завершился или еще не начался.
+                    </p>
+                    
+                    <div class="error-actions">
+                        <a href="index.html" class="btn btn--primary">
+                            <i class="fas fa-home"></i>
+                            На главную
+                        </a>
+                        <a href="schedule.html" class="btn btn--secondary">
+                            <i class="fas fa-calendar-alt"></i>
+                            Расписание конкурсов
+                        </a>
+                        <a href="index.html#competitions" class="btn btn--outline">
+                            <i class="fas fa-trophy"></i>
+                            Все конкурсы
+                        </a>
+                    </div>
+                    
+                    <div class="error-search">
+                        <p style="margin-bottom: var(--spacing-sm);">Или найдите нужный конкурс:</p>
+                        <form class="search-form-404">
+                            <input type="text" class="form-input search-input-404" placeholder="Название конкурса...">
+                            <button type="submit" class="btn btn--primary">Поиск</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Подвал сайта -->
+    <footer class="footer" id="contact">
+        <div class="container">
+            <div class="footer__inner">
+                <div class="footer__contacts">
+                    <h3 class="footer__title">Контакты</h3>
+                    <div class="footer__contact-item">
+                        <i class="fas fa-phone"></i>
+                        <a href="tel:+74842234567" class="footer__link">+7 (4842) 23-45-67</a>
+                    </div>
+                    <div class="footer__contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <a href="mailto:family@cosmos.ru" class="footer__link">family@cosmos.ru</a>
+                    </div>
+                </div>
+                
+                <div class="footer__navigation">
+                    <h3 class="footer__title">Навигация</h3>
+                    <ul class="footer__nav-list">
+                        <li class="footer__nav-item"><a href="index.html" class="footer__link">Главная</a></li>
+                        <li class="footer__nav-item"><a href="index-light.html" class="footer__link">Главная-светлая</a></li>
+                        <li class="footer__nav-item"><a href="registration.html" class="footer__link">Регистрация</a></li>
+                        <li class="footer__nav-item"><a href="competition.html" class="footer__link">Конкурс</a></li>
+                        <li class="footer__nav-item"><a href="account.html" class="footer__link">Личный кабинет</a></li>
+                        <li class="footer__nav-item"><a href="404.html" class="footer__link active">Страница не найдена</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer__social">
+                    <h3 class="footer__title">Мы в соцсетях</h3>
+                    <div class="social-icons">
+                        <a href="#" class="social-icon" aria-label="ВКонтакте">
+                            <i class="fab fa-vk"></i>
+                        </a>
+                        <a href="#" class="social-icon" aria-label="Telegram">
+                            <i class="fab fa-telegram"></i>
+                        </a>
+                        <a href="#" class="social-icon" aria-label="YouTube">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                        <a href="#" class="social-icon" aria-label="Instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer__bottom">
+                <p class="footer__copyright">© 2024 "Моя семья – мой космос". Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/form-validation.js"></script>
+    <script>
+    // Поиск на странице 404
+    document.addEventListener('DOMContentLoaded', function() {
+        const searchForm = document.querySelector('.search-form-404');
+        const searchInput = document.querySelector('.search-input-404');
+        
+        if (searchForm) {
+            // Теперь форма будет валидироваться через form-validation.js
+            // Можно оставить только специфичную логику
+            searchForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                if (searchInput.value.trim()) {
+                    // Имитация поиска
+                    showFormMessage(this, 'info', `Выполняется поиск: "${searchInput.value}"`);
+                    
+                    // Очищаем поле
+                    searchInput.value = '';
+                }
+            });
+        }
+    });
+</script>
+</body>
+</html>

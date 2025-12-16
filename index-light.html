@@ -1,2 +1,533 @@
-<!DOCTYPE html> 
-<html><head><title>������� �������</title></head><body></body></html> 
+<!DOCTYPE html>
+<html lang="ru" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Моя семья – мой космос | Главная (Светлая тема)</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/themes.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Шапка сайта -->
+    <header class="header">
+        <div class="container">
+            <div class="header__inner">
+                <!-- Логотип -->
+                <div class="logo">
+                    <a href="index.html" class="logo__link">
+                        <div class="logo__icon">
+                            <i class="fas fa-rocket"></i>
+                        </div>
+                        <div class="logo__text">
+                            <span class="logo__title">Моя семья</span>
+                            <span class="logo__subtitle">мой космос</span>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- Основное меню -->
+                <nav class="nav">
+                    <ul class="nav__list">
+                        <li class="nav__item"><a href="index.html" class="nav__link active">Главная</a></li>
+                        <li class="nav__item"><a href="#about" class="nav__link">О нас</a></li>
+                        <li class="nav__item"><a href="#competitions" class="nav__link">Конкурсы</a></li>
+                        <li class="nav__item"><a href="#search" class="nav__link">Поиск</a></li>
+                        <li class="nav__item"><a href="#reviews" class="nav__link">Отзывы</a></li>
+                        <li class="nav__item"><a href="#contact" class="nav__link">Контакты</a></li>
+                        <li class="nav__item"><a href="registration.html" class="nav__link">Регистрация</a></li>
+                        <li class="nav__item"><a href="#auth" class="nav__link">Авторизация</a></li>
+                        <li class="nav__item"><a href="account.html" class="nav__link">Личный кабинет</a></li>
+                        <li class="nav__item">
+                            <button class="theme-toggle" id="themeToggle" aria-label="Переключить тему">
+                                <i class="fas fa-moon"></i>
+                            </button>
+                        </li>
+                    </ul>
+                </nav>
+
+                <!-- Бургер-меню для мобильных -->
+                <button class="burger" id="burger" aria-label="Меню">
+                    <span class="burger__line"></span>
+                    <span class="burger__line"></span>
+                    <span class="burger__line"></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Герой-секция -->
+        <section class="hero">
+            <div class="container">
+                <div class="hero__content">
+                    <h1 class="hero__title">Откройте новые горизонты вместе с семьей</h1>
+                    <p class="hero__subtitle">Конкурсы, приключения и незабываемые моменты для всей семьи</p>
+                    <a href="#competitions" class="btn btn--primary">Смотреть конкурсы</a>
+                </div>
+                <div class="hero__image">
+                    <div class="hero__image-inner">
+                        <i class="fas fa-users-astronaut"></i>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Секция популярных конкурсов (слайдер) -->
+        <section class="popular-competitions">
+            <div class="container">
+                <h2 class="section-title">Популярные конкурсы</h2>
+                <div class="slider">
+                    <div class="slider__container">
+                        <!-- Слайд 1 -->
+                        <div class="slider__slide active">
+                            <div class="competition-card">
+                                <div class="competition-card__image">
+                                    <i class="fas fa-paint-brush"></i>
+                                </div>
+                                <div class="competition-card__content">
+                                    <h3 class="competition-card__title">Семейный рисунок "Космос глазами детей"</h3>
+                                    <p class="competition-card__description">Создайте совместный рисунок на тему космоса. Используйте любые материалы: краски, карандаши, фломастеры.</p>
+                                    <div class="competition-card__rating">
+                                        <div class="rating-stars">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star-half-alt"></i>
+                                            <span class="rating-value">4.5</span>
+                                        </div>
+                                    </div>
+                                    <a href="competition.html" class="btn btn--secondary">Подробнее</a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Слайд 2 -->
+                        <div class="slider__slide">
+                            <div class="competition-card">
+                                <div class="competition-card__image">
+                                    <i class="fas fa-robot"></i>
+                                </div>
+                                <div class="competition-card__content">
+                                    <h3 class="competition-card__title">Робототехника для всей семьи</h3>
+                                    <p class="competition-card__description">Создайте робота из подручных материалов. Развивайте инженерное мышление и творческие способности.</p>
+                                    <div class="competition-card__rating">
+                                        <div class="rating-stars">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="far fa-star"></i>
+                                            <span class="rating-value">4.0</span>
+                                        </div>
+                                    </div>
+                                    <a href="competition.html" class="btn btn--secondary">Подробнее</a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Слайд 3 -->
+                        <div class="slider__slide">
+                            <div class="competition-card">
+                                <div class="competition-card__image">
+                                    <i class="fas fa-utensils"></i>
+                                </div>
+                                <div class="competition-card__content">
+                                    <h3 class="competition-card__title">Космическая кухня</h3>
+                                    <p class="competition-card__description">Приготовьте блюдо с космической тематикой. Проявите фантазию в оформлении и подаче.</p>
+                                    <div class="competition-card__rating">
+                                        <div class="rating-stars">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <span class="rating-value">5.0</span>
+                                        </div>
+                                    </div>
+                                    <a href="competition.html" class="btn btn--secondary">Подробнее</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Навигация слайдера -->
+                    <div class="slider__nav">
+                        <button class="slider__prev" aria-label="Предыдущий слайд">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <div class="slider__dots">
+                            <button class="slider__dot active" data-slide="0" aria-label="Перейти к слайду 1"></button>
+                            <button class="slider__dot" data-slide="1" aria-label="Перейти к слайду 2"></button>
+                            <button class="slider__dot" data-slide="2" aria-label="Перейти к слайду 3"></button>
+                        </div>
+                        <button class="slider__next" aria-label="Следующий слайд">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Секция авторизации -->
+        <section class="auth-section" id="auth">
+            <div class="container">
+                <h2 class="section-title">Авторизация</h2>
+                <div class="auth-form">
+                    <form id="loginForm">
+                        <div class="form-group">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" id="email" class="form-input" placeholder="Введите ваш email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="password" class="form-label">Пароль</label>
+                            <input type="password" id="password" class="form-input" placeholder="Введите ваш пароль" required>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn--primary">Войти</button>
+                            <a href="#" class="forgot-password">Забыли пароль?</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- Секция "О нас" -->
+        <section class="about-section" id="about">
+            <div class="container">
+                <h2 class="section-title">О нас</h2>
+                <div class="about-content">
+                    <div class="about-text">
+                        <p>Мы - команда энтузиастов, которая верит, что семья - это самая важная ценность в жизни каждого человека. Наша миссия - укреплять семейные связи через совместное творчество, обучение и приключения.</p>
+                        <p>Организуя семейные конкурсы и мероприятия с 2015 года, мы создали уникальное пространство, где дети и родители могут вместе открывать новые горизонты, развивать таланты и создавать незабываемые воспоминания.</p>
+                        <p>Наши мероприятия посетили уже более 5000 семей, и мы продолжаем расти, предлагая новые форматы и темы для семейного досуга.</p>
+                    </div>
+                    <div class="about-image">
+                        <div class="about-image__wrapper">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Секция с приветствием от организаторов -->
+        <section class="greeting-section">
+            <div class="container">
+                <h2 class="section-title">Приветствие от организаторов</h2>
+                <div class="video-container">
+                    <div class="video-placeholder">
+                        <i class="fas fa-play-circle"></i>
+                        <p>Видео приветствие от организаторов</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Секция "Конкурсы" -->
+        <section class="competitions-section" id="competitions">
+            <div class="container">
+                <h2 class="section-title">Все конкурсы</h2>
+                <div class="competitions-grid">
+                    <!-- Конкурс 1 -->
+                    <div class="competition-card">
+                        <div class="competition-card__image">
+                            <i class="fas fa-paint-brush"></i>
+                        </div>
+                        <div class="competition-card__content">
+                            <h3 class="competition-card__title">Семейный рисунок "Космос глазами детей"</h3>
+                            <p class="competition-card__description">Создайте совместный рисунок на тему космоса.</p>
+                            <div class="competition-card__info">
+                                <div class="competition-card__participants">
+                                    <i class="fas fa-users"></i>
+                                    <span>45 записей</span>
+                                </div>
+                                <div class="competition-card__rating">
+                                    <i class="fas fa-star"></i>
+                                    <span>4.5</span>
+                                </div>
+                            </div>
+                            <a href="registration.html" class="btn btn--secondary">Записаться</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Конкурс 2 -->
+                    <div class="competition-card">
+                        <div class="competition-card__image">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                        <div class="competition-card__content">
+                            <h3 class="competition-card__title">Робототехника для всей семьи</h3>
+                            <p class="competition-card__description">Создайте робота из подручных материалов.</p>
+                            <div class="competition-card__info">
+                                <div class="competition-card__participants">
+                                    <i class="fas fa-users"></i>
+                                    <span>32 записи</span>
+                                </div>
+                                <div class="competition-card__rating">
+                                    <i class="fas fa-star"></i>
+                                    <span>4.0</span>
+                                </div>
+                            </div>
+                            <a href="registration.html" class="btn btn--secondary">Записаться</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Конкурс 3 -->
+                    <div class="competition-card">
+                        <div class="competition-card__image">
+                            <i class="fas fa-utensils"></i>
+                        </div>
+                        <div class="competition-card__content">
+                            <h3 class="competition-card__title">Космическая кухня</h3>
+                            <p class="competition-card__description">Приготовьте блюдо с космической тематикой.</p>
+                            <div class="competition-card__info">
+                                <div class="competition-card__participants">
+                                    <i class="fas fa-users"></i>
+                                    <span>28 записей</span>
+                                </div>
+                                <div class="competition-card__rating">
+                                    <i class="fas fa-star"></i>
+                                    <span>5.0</span>
+                                </div>
+                            </div>
+                            <a href="registration.html" class="btn btn--secondary">Записаться</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Конкурс 4 -->
+                    <div class="competition-card">
+                        <div class="competition-card__image">
+                            <i class="fas fa-music"></i>
+                        </div>
+                        <div class="competition-card__content">
+                            <h3 class="competition-card__title">Космическая мелодия</h3>
+                            <p class="competition-card__description">Исполните музыкальную композицию на космическую тему.</p>
+                            <div class="competition-card__info">
+                                <div class="competition-card__participants">
+                                    <i class="fas fa-users"></i>
+                                    <span>21 запись</span>
+                                </div>
+                                <div class="competition-card__rating">
+                                    <i class="fas fa-star"></i>
+                                    <span>4.2</span>
+                                </div>
+                            </div>
+                            <a href="registration.html" class="btn btn--secondary">Записаться</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Конкурс 5 -->
+                    <div class="competition-card">
+                        <div class="competition-card__image">
+                            <i class="fas fa-video"></i>
+                        </div>
+                        <div class="competition-card__content">
+                            <h3 class="competition-card__title">Космическое видео</h3>
+                            <p class="competition-card__description">Снимите короткометражный фильм на космическую тему.</p>
+                            <div class="competition-card__info">
+                                <div class="competition-card__participants">
+                                    <i class="fas fa-users"></i>
+                                    <span>18 записей</span>
+                                </div>
+                                <div class="competition-card__rating">
+                                    <i class="fas fa-star"></i>
+                                    <span>4.7</span>
+                                </div>
+                            </div>
+                            <a href="registration.html" class="btn btn--secondary">Записаться</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Секция поиска -->
+        <section class="search-section" id="search">
+            <div class="container">
+                <h2 class="section-title">Поиск конкурсов</h2>
+                <div class="search-form">
+                    <form id="searchForm">
+                        <div class="search-input-wrapper">
+                            <input type="text" id="searchInput" class="search-input" placeholder="Введите название или описание конкурса...">
+                            <button type="submit" class="btn btn--primary">Поиск</button>
+                        </div>
+                        <div class="search-hints">
+                            <span>Популярные запросы: рисунок, робот, кулинария, музыка, видео</span>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- Секция "Отзывы" -->
+        <section class="reviews-section" id="reviews">
+            <div class="container">
+                <h2 class="section-title">Отзывы участников</h2>
+                <div class="reviews-slider">
+                    <div class="reviews-container">
+                        <!-- Отзыв 1 -->
+                        <div class="review-card active">
+                            <div class="review-card__header">
+                                <div class="review-card__avatar">
+                                    <i class="fas fa-user-circle"></i>
+                                </div>
+                                <div class="review-card__author">
+                                    <h4 class="review-card__name">Анна Петрова</h4>
+                                    <div class="review-card__date">15 мая 2024</div>
+                                </div>
+                            </div>
+                            <div class="review-card__content">
+                                <p>Замечательное мероприятие! Дети были в восторге от конкурса рисунков. Организация на высшем уровне, все продумано до мелочей. Обязательно придем еще!</p>
+                            </div>
+                            <div class="review-card__footer">
+                                <a href="competition.html" class="review-card__link">Посмотреть конкурс</a>
+                            </div>
+                        </div>
+                        
+                        <!-- Отзыв 2 -->
+                        <div class="review-card">
+                            <div class="review-card__header">
+                                <div class="review-card__avatar">
+                                    <i class="fas fa-user-circle"></i>
+                                </div>
+                                <div class="review-card__author">
+                                    <h4 class="review-card__name">Иван Сидоров</h4>
+                                    <div class="review-card__date">10 мая 2024</div>
+                                </div>
+                            </div>
+                            <div class="review-card__content">
+                                <p>Участвовали в конкурсе робототехники с сыном. Получили массу положительных эмоций, познакомились с интересными людьми. Спасибо организаторам!</p>
+                            </div>
+                            <div class="review-card__footer">
+                                <a href="competition.html" class="review-card__link">Посмотреть конкурс</a>
+                            </div>
+                        </div>
+                        
+                        <!-- Отзыв 3 -->
+                        <div class="review-card">
+                            <div class="review-card__header">
+                                <div class="review-card__avatar">
+                                    <i class="fas fa-user-circle"></i>
+                                </div>
+                                <div class="review-card__author">
+                                    <h4 class="review-card__name">Мария Иванова</h4>
+                                    <div class="review-card__date">5 мая 2024</div>
+                                </div>
+                            </div>
+                            <div class="review-card__content">
+                                <p>Конкурс космической кухни стал для нашей семьи настоящим праздником. Дочь придумала невероятный десерт в виде планеты, а мы помогали с оформлением. Всем рекомендую!</p>
+                            </div>
+                            <div class="review-card__footer">
+                                <a href="competition.html" class="review-card__link">Посмотреть конкурс</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Индикаторы слайдера отзывов -->
+                    <div class="reviews-nav">
+                        <button class="reviews-prev" aria-label="Предыдущий отзыв">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <div class="reviews-dots">
+                            <button class="reviews-dot active" data-review="0" aria-label="Перейти к отзыву 1"></button>
+                            <button class="reviews-dot" data-review="1" aria-label="Перейти к отзыву 2"></button>
+                            <button class="reviews-dot" data-review="2" aria-label="Перейти к отзыву 3"></button>
+                        </div>
+                        <button class="reviews-next" aria-label="Следующий отзыв">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Форма подписки на новости -->
+        <section class="newsletter-section">
+            <div class="container">
+                <h2 class="section-title">Подпишитесь на новости</h2>
+                <div class="newsletter-form">
+                    <form id="newsletterForm">
+                        <div class="newsletter-form__inner">
+                            <div class="form-group">
+                                <input type="email" id="newsletterEmail" class="form-input" placeholder="Ваш email" required>
+                            </div>
+                            <div class="form-group newsletter-checkbox">
+                                <input type="checkbox" id="privacyAgreement" required>
+                                <label for="privacyAgreement" class="checkbox-label">
+                                    Согласен на обработку персональных данных
+                                </label>
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" class="btn btn--primary">Подписаться</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Подвал сайта -->
+    <footer class="footer" id="contact">
+        <div class="container">
+            <div class="footer__inner">
+                <div class="footer__contacts">
+                    <h3 class="footer__title">Контакты</h3>
+                    <div class="footer__contact-item">
+                        <i class="fas fa-phone"></i>
+                        <a href="tel:+74842234567" class="footer__link">+7 (4842) 23-45-67</a>
+                    </div>
+                    <div class="footer__contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <a href="mailto:family@cosmos.ru" class="footer__link">family@cosmos.ru</a>
+                    </div>
+                </div>
+                
+                <div class="footer__navigation">
+                    <h3 class="footer__title">Навигация</h3>
+                    <ul class="footer__nav-list">
+                        <li class="footer__nav-item"><a href="index.html" class="footer__link">Главная</a></li>
+                        <li class="footer__nav-item"><a href="index-light.html" class="footer__link">Главная-светлая</a></li>
+                        <li class="footer__nav-item"><a href="registration.html" class="footer__link">Регистрация</a></li>
+                        <li class="footer__nav-item"><a href="competition.html" class="footer__link">Конкурс</a></li>
+                        <li class="footer__nav-item"><a href="account.html" class="footer__link">Личный кабинет</a></li>
+                        <li class="footer__nav-item"><a href="404.html" class="footer__link">Страница не найдена</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer__social">
+                    <h3 class="footer__title">Мы в соцсетях</h3>
+                    <div class="social-icons">
+                        <a href="#" class="social-icon" aria-label="ВКонтакте">
+                            <i class="fab fa-vk"></i>
+                        </a>
+                        <a href="#" class="social-icon" aria-label="Telegram">
+                            <i class="fab fa-telegram"></i>
+                        </a>
+                        <a href="#" class="social-icon" aria-label="YouTube">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                        <a href="#" class="social-icon" aria-label="Instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer__bottom">
+                <p class="footer__copyright">© 2024 "Моя семья – мой космос". Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <script src="js/main.js"></script>
+    <script src="js/theme-switcher.js"></script>
+    <script src="js/form-validation.js"></script>
+</body>
+</html>

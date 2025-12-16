@@ -1,2 +1,633 @@
-<!DOCTYPE html> 
-<html><head><title>�����������</title></head><body></body></html> 
+<!DOCTYPE html>
+<html lang="ru" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Моя семья – мой космос | Регистрация</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/themes.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Шапка сайта -->
+    <header class="header">
+        <div class="container">
+            <div class="header__inner">
+                <!-- Логотип -->
+                <div class="logo">
+                    <a href="index.html" class="logo__link">
+                        <div class="logo__icon">
+                            <i class="fas fa-rocket"></i>
+                        </div>
+                        <div class="logo__text">
+                            <span class="logo__title">Моя семья</span>
+                            <span class="logo__subtitle">мой космос</span>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- Основное меню -->
+                <nav class="nav">
+                    <ul class="nav__list">
+                        <li class="nav__item"><a href="index.html" class="nav__link">Главная</a></li>
+                        <li class="nav__item"><a href="index.html#about" class="nav__link">О нас</a></li>
+                        <li class="nav__item"><a href="index.html#competitions" class="nav__link">Конкурсы</a></li>
+                        <li class="nav__item"><a href="index.html#search" class="nav__link">Поиск</a></li>
+                        <li class="nav__item"><a href="index.html#reviews" class="nav__link">Отзывы</a></li>
+                        <li class="nav__item"><a href="index.html#contact" class="nav__link">Контакты</a></li>
+                        <li class="nav__item"><a href="registration.html" class="nav__link active">Регистрация</a></li>
+                        <li class="nav__item"><a href="index.html#auth" class="nav__link">Авторизация</a></li>
+                        <li class="nav__item"><a href="account.html" class="nav__link">Личный кабинет</a></li>
+                    </ul>
+                </nav>
+
+                <!-- Бургер-меню для мобильных -->
+                <button class="burger" id="burger" aria-label="Меню">
+                    <span class="burger__line"></span>
+                    <span class="burger__line"></span>
+                    <span class="burger__line"></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="registration-page">
+        <div class="container">
+            <div class="page-header">
+                <h1 class="page-title">Регистрация на сайте</h1>
+                <p class="page-subtitle">Заполните форму, чтобы присоединиться к нашему сообществу</p>
+            </div>
+
+            <div class="registration-form-wrapper">
+                <form id="registrationForm" class="registration-form">
+                    <!-- Основные поля пользователя -->
+                    <fieldset class="form-section">
+                        <legend class="form-section__title">Основная информация</legend>
+                        
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="email" class="form-label required">Email</label>
+                                <input type="email" id="email" name="email" class="form-input" placeholder="example@mail.ru" required>
+                                <div class="form-hint">На этот email придет подтверждение регистрации</div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="firstName" class="form-label required">Имя</label>
+                                <input type="text" id="firstName" name="firstName" class="form-input" placeholder="Иван" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="lastName" class="form-label required">Фамилия</label>
+                                <input type="text" id="lastName" name="lastName" class="form-input" placeholder="Иванов" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="age" class="form-label required">Возраст</label>
+                                <div class="age-inputs">
+                                    <input type="number" id="age" name="age" class="form-input" placeholder="25" min="0" max="120" required>
+                                    <span class="age-separator">или</span>
+                                    <input type="date" id="birthDate" name="birthDate" class="form-input">
+                                </div>
+                                <div class="form-hint">Укажите возраст или дату рождения</div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label required">Пол</label>
+                                <div class="radio-group">
+                                    <label class="radio-label">
+                                        <input type="radio" name="gender" value="male" required>
+                                        <span class="radio-custom"></span>
+                                        Мужской
+                                    </label>
+                                    <label class="radio-label">
+                                        <input type="radio" name="gender" value="female">
+                                        <span class="radio-custom"></span>
+                                        Женский
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="password" class="form-label required">Пароль</label>
+                                <input type="password" id="password" name="password" class="form-input" placeholder="Не менее 6 символов" required minlength="6">
+                                <div class="password-strength">
+                                    <div class="strength-bar"></div>
+                                    <div class="strength-text">Надежность пароля</div>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="confirmPassword" class="form-label required">Повтор пароля</label>
+                                <input type="password" id="confirmPassword" name="confirmPassword" class="form-input" placeholder="Повторите пароль" required>
+                                <div class="password-match"></div>
+                            </div>
+                        </div>
+                    </fieldset>
+
+                    <!-- Загрузка фотографии -->
+                    <fieldset class="form-section">
+                        <legend class="form-section__title">Семейная фотография</legend>
+                        
+                        <div class="photo-upload">
+                            <div class="photo-upload__area" id="photoUploadArea">
+                                <i class="fas fa-cloud-upload-alt"></i>
+                                <p class="photo-upload__text">Перетащите сюда фотографию или</p>
+                                <button type="button" class="btn btn--secondary" id="choosePhotoBtn">Выбрать файл</button>
+                                <input type="file" id="familyPhoto" name="familyPhoto" accept="image/*" class="photo-upload__input" hidden>
+                            </div>
+                            <div class="photo-upload__preview" id="photoPreview">
+                                <div class="photo-upload__hint">
+                                    <i class="fas fa-info-circle"></i>
+                                    <p>Рекомендуемый размер: не более 5 MB, форматы: JPG, PNG</p>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+
+                    <!-- Члены семьи (динамическое добавление) -->
+                    <fieldset class="form-section">
+                        <legend class="form-section__title">
+                            Члены семьи
+                            <button type="button" class="btn btn--outline btn--sm" id="addFamilyMember">+ Добавить члена семьи</button>
+                        </legend>
+                        
+                        <div class="family-members" id="familyMembers">
+                            <!-- Первый дополнительный член семьи -->
+                            <div class="family-member">
+                                <div class="family-member__header">
+                                    <h3>Член семьи #1</h3>
+                                    <button type="button" class="btn btn--text btn--danger btn--sm remove-member">
+                                        <i class="fas fa-times"></i> Удалить
+                                    </button>
+                                </div>
+                                
+                                <div class="form-grid">
+                                    <div class="form-group">
+                                        <label class="form-label required">Фамилия</label>
+                                        <input type="text" name="familyLastName[]" class="form-input" placeholder="Иванова">
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label class="form-label required">Имя</label>
+                                        <input type="text" name="familyFirstName[]" class="form-input" placeholder="Мария">
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label class="form-label required">Возраст</label>
+                                        <input type="number" name="familyAge[]" class="form-input" placeholder="20" min="0" max="120">
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label class="form-label required">Пол</label>
+                                        <select name="familyGender[]" class="form-input">
+                                            <option value="">Выберите пол</option>
+                                            <option value="male">Мужской</option>
+                                            <option value="female">Женский</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+
+                    <!-- Согласие на обработку данных -->
+                    <fieldset class="form-section">
+                        <div class="form-group">
+                            <div class="checkbox-group">
+                                <label class="checkbox-label required">
+                                    <input type="checkbox" id="privacyAgreement" name="privacyAgreement" required>
+                                    <span class="checkbox-custom"></span>
+                                    Я согласен на обработку персональных данных
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <div class="checkbox-group">
+                                <label class="checkbox-label">
+                                    <input type="checkbox" id="newsletterSubscription" name="newsletterSubscription">
+                                    <span class="checkbox-custom"></span>
+                                    Я хочу получать новости о конкурсах и мероприятиях
+                                </label>
+                            </div>
+                        </div>
+                    </fieldset>
+
+                    <!-- Кнопки формы -->
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn--primary btn--lg">Зарегистрироваться</button>
+                        <button type="reset" class="btn btn--outline">Очистить форму</button>
+                    </div>
+                </form>
+
+                <!-- Сообщения о состоянии формы -->
+                <div class="form-messages">
+                    <div class="message success" id="successMessage" style="display: none;">
+                        <i class="fas fa-check-circle"></i>
+                        <div>
+                            <h4>Регистрация успешно завершена!</h4>
+                            <p>На ваш email отправлено письмо с подтверждением регистрации.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="message error" id="errorMessage" style="display: none;">
+                        <i class="fas fa-exclamation-circle"></i>
+                        <div>
+                            <h4>Ошибка при регистрации</h4>
+                            <p id="errorMessageText">Пожалуйста, проверьте правильность заполнения всех полей.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="message warning" id="warningMessage" style="display: none;">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <div>
+                            <h4>Не все поля заполнены</h4>
+                            <p>Пожалуйста, заполните все обязательные поля, отмеченные звездочкой (*).</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Подвал сайта -->
+    <footer class="footer" id="contact">
+        <div class="container">
+            <div class="footer__inner">
+                <div class="footer__contacts">
+                    <h3 class="footer__title">Контакты</h3>
+                    <div class="footer__contact-item">
+                        <i class="fas fa-phone"></i>
+                        <a href="tel:+74842234567" class="footer__link">+7 (4842) 23-45-67</a>
+                    </div>
+                    <div class="footer__contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <a href="mailto:family@cosmos.ru" class="footer__link">family@cosmos.ru</a>
+                    </div>
+                </div>
+                
+                <div class="footer__navigation">
+                    <h3 class="footer__title">Навигация</h3>
+                    <ul class="footer__nav-list">
+                        <li class="footer__nav-item"><a href="index.html" class="footer__link">Главная</a></li>
+                        <li class="footer__nav-item"><a href="index-light.html" class="footer__link">Главная-светлая</a></li>
+                        <li class="footer__nav-item"><a href="registration.html" class="footer__link active">Регистрация</a></li>
+                        <li class="footer__nav-item"><a href="competition.html" class="footer__link">Конкурс</a></li>
+                        <li class="footer__nav-item"><a href="account.html" class="footer__link">Личный кабинет</a></li>
+                        <li class="footer__nav-item"><a href="404.html" class="footer__link">Страница не найдена</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer__social">
+                    <h3 class="footer__title">Мы в соцсетях</h3>
+                    <div class="social-icons">
+                        <a href="#" class="social-icon" aria-label="ВКонтакте">
+                            <i class="fab fa-vk"></i>
+                        </a>
+                        <a href="#" class="social-icon" aria-label="Telegram">
+                            <i class="fab fa-telegram"></i>
+                        </a>
+                        <a href="#" class="social-icon" aria-label="YouTube">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                        <a href="#" class="social-icon" aria-label="Instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer__bottom">
+                <p class="footer__copyright">© 2024 "Моя семья – мой космос". Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/form-validation.js"></script>
+    <script>
+        // Специфичный JavaScript для страницы регистрации
+        document.addEventListener('DOMContentLoaded', function() {
+            // Загрузка фотографии
+            const photoUploadArea = document.getElementById('photoUploadArea');
+            const choosePhotoBtn = document.getElementById('choosePhotoBtn');
+            const familyPhotoInput = document.getElementById('familyPhoto');
+            const photoPreview = document.getElementById('photoPreview');
+            
+            choosePhotoBtn.addEventListener('click', function() {
+                familyPhotoInput.click();
+            });
+            
+            photoUploadArea.addEventListener('click', function(e) {
+                if (e.target !== choosePhotoBtn) {
+                    familyPhotoInput.click();
+                }
+            });
+            
+            // Drag and drop для фотографии
+            ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+                photoUploadArea.addEventListener(eventName, preventDefaults, false);
+            });
+            
+            function preventDefaults(e) {
+                e.preventDefault();
+                e.stopPropagation();
+            }
+            
+            ['dragenter', 'dragover'].forEach(eventName => {
+                photoUploadArea.addEventListener(eventName, highlight, false);
+            });
+            
+            ['dragleave', 'drop'].forEach(eventName => {
+                photoUploadArea.addEventListener(eventName, unhighlight, false);
+            });
+            
+            function highlight() {
+                photoUploadArea.classList.add('highlight');
+            }
+            
+            function unhighlight() {
+                photoUploadArea.classList.remove('highlight');
+            }
+            
+            photoUploadArea.addEventListener('drop', handleDrop, false);
+            
+            function handleDrop(e) {
+                const dt = e.dataTransfer;
+                const files = dt.files;
+                handleFiles(files);
+            }
+            
+            familyPhotoInput.addEventListener('change', function() {
+                handleFiles(this.files);
+            });
+            
+            function handleFiles(files) {
+                if (files.length > 0) {
+                    const file = files[0];
+                    if (file.type.startsWith('image/')) {
+                        const reader = new FileReader();
+                        reader.onload = function(e) {
+                            photoPreview.innerHTML = `
+                                <div class="photo-preview">
+                                    <img src="${e.target.result}" alt="Загруженная фотография">
+                                    <button type="button" class="btn btn--text btn--danger btn--sm remove-photo">
+                                        <i class="fas fa-times"></i> Удалить
+                                    </button>
+                                </div>
+                            `;
+                            
+                            // Добавляем обработчик для кнопки удаления
+                            const removePhotoBtn = photoPreview.querySelector('.remove-photo');
+                            removePhotoBtn.addEventListener('click', function() {
+                                photoPreview.innerHTML = `
+                                    <div class="photo-upload__hint">
+                                        <i class="fas fa-info-circle"></i>
+                                        <p>Рекомендуемый размер: не более 5 MB, форматы: JPG, PNG</p>
+                                    </div>
+                                `;
+                                familyPhotoInput.value = '';
+                            });
+                        };
+                        reader.readAsDataURL(file);
+                    } else {
+                        alert('Пожалуйста, выберите файл изображения');
+                    }
+                }
+            }
+            
+            // Добавление/удаление членов семьи
+            const addFamilyMemberBtn = document.getElementById('addFamilyMember');
+            const familyMembers = document.getElementById('familyMembers');
+            let memberCount = 1;
+            
+            addFamilyMemberBtn.addEventListener('click', function() {
+                memberCount++;
+                const newMember = document.createElement('div');
+                newMember.className = 'family-member';
+                newMember.innerHTML = `
+                    <div class="family-member__header">
+                        <h3>Член семьи #${memberCount}</h3>
+                        <button type="button" class="btn btn--text btn--danger btn--sm remove-member">
+                            <i class="fas fa-times"></i> Удалить
+                        </button>
+                    </div>
+                    
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label class="form-label required">Фамилия</label>
+                            <input type="text" name="familyLastName[]" class="form-input" placeholder="Иванова" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label required">Имя</label>
+                            <input type="text" name="familyFirstName[]" class="form-input" placeholder="Мария" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label required">Возраст</label>
+                            <input type="number" name="familyAge[]" class="form-input" placeholder="20" min="0" max="120" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label required">Пол</label>
+                            <select name="familyGender[]" class="form-input" required>
+                                <option value="">Выберите пол</option>
+                                <option value="male">Мужской</option>
+                                <option value="female">Женский</option>
+                            </select>
+                        </div>
+                    </div>
+                `;
+                
+                familyMembers.appendChild(newMember);
+                
+                // Добавляем обработчик для кнопки удаления
+                const removeBtn = newMember.querySelector('.remove-member');
+                removeBtn.addEventListener('click', function() {
+                    newMember.remove();
+                    updateMemberNumbers();
+                });
+            });
+            
+            // Обработчик для существующей кнопки удаления
+            const existingRemoveBtn = document.querySelector('.remove-member');
+            if (existingRemoveBtn) {
+                existingRemoveBtn.addEventListener('click', function() {
+                    const member = this.closest('.family-member');
+                    member.remove();
+                    updateMemberNumbers();
+                });
+            }
+            
+            function updateMemberNumbers() {
+                const members = document.querySelectorAll('.family-member');
+                members.forEach((member, index) => {
+                    const header = member.querySelector('h3');
+                    header.textContent = `Член семьи #${index + 1}`;
+                });
+                memberCount = members.length;
+            }
+            
+            // Валидация пароля
+            const passwordInput = document.getElementById('password');
+            const confirmPasswordInput = document.getElementById('confirmPassword');
+            const passwordMatchDiv = document.querySelector('.password-match');
+            const strengthBar = document.querySelector('.strength-bar');
+            const strengthText = document.querySelector('.strength-text');
+            
+            function checkPasswordStrength(password) {
+                let strength = 0;
+                
+                if (password.length >= 6) strength += 20;
+                if (password.length >= 8) strength += 20;
+                if (/[a-z]/.test(password) && /[A-Z]/.test(password)) strength += 20;
+                if (/\d/.test(password)) strength += 20;
+                if (/[^A-Za-z0-9]/.test(password)) strength += 20;
+                
+                return Math.min(strength, 100);
+            }
+            
+            function updatePasswordStrength() {
+                const password = passwordInput.value;
+                const strength = checkPasswordStrength(password);
+                
+                strengthBar.style.width = strength + '%';
+                
+                if (strength < 40) {
+                    strengthBar.style.backgroundColor = 'var(--color-error)';
+                    strengthText.textContent = 'Слабый пароль';
+                } else if (strength < 70) {
+                    strengthBar.style.backgroundColor = 'var(--color-warning)';
+                    strengthText.textContent = 'Средний пароль';
+                } else {
+                    strengthBar.style.backgroundColor = 'var(--color-success)';
+                    strengthText.textContent = 'Сильный пароль';
+                }
+                
+                checkPasswordMatch();
+            }
+            
+            function checkPasswordMatch() {
+                const password = passwordInput.value;
+                const confirmPassword = confirmPasswordInput.value;
+                
+                if (confirmPassword === '') {
+                    passwordMatchDiv.textContent = '';
+                    confirmPasswordInput.classList.remove('invalid', 'valid');
+                } else if (password === confirmPassword) {
+                    passwordMatchDiv.textContent = '✓ Пароли совпадают';
+                    passwordMatchDiv.style.color = 'var(--color-success)';
+                    confirmPasswordInput.classList.remove('invalid');
+                    confirmPasswordInput.classList.add('valid');
+                } else {
+                    passwordMatchDiv.textContent = '✗ Пароли не совпадают';
+                    passwordMatchDiv.style.color = 'var(--color-error)';
+                    confirmPasswordInput.classList.remove('valid');
+                    confirmPasswordInput.classList.add('invalid');
+                }
+            }
+            
+            passwordInput.addEventListener('input', updatePasswordStrength);
+            confirmPasswordInput.addEventListener('input', checkPasswordMatch);
+            
+            // Обработка отправки формы
+            const registrationForm = document.getElementById('registrationForm');
+            const successMessage = document.getElementById('successMessage');
+            const errorMessage = document.getElementById('errorMessage');
+            const warningMessage = document.getElementById('warningMessage');
+            const errorMessageText = document.getElementById('errorMessageText');
+            
+            registrationForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Скрываем все сообщения
+                successMessage.style.display = 'none';
+                errorMessage.style.display = 'none';
+                warningMessage.style.display = 'none';
+                
+                // Проверка обязательных полей
+                let isValid = true;
+                let errorMsg = '';
+                
+                // Проверка email
+                const email = document.getElementById('email');
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!email.value || !emailRegex.test(email.value)) {
+                    isValid = false;
+                    errorMsg = 'Введите корректный email адрес';
+                    email.classList.add('invalid');
+                } else {
+                    email.classList.remove('invalid');
+                }
+                
+                // Проверка пароля
+                if (passwordInput.value !== confirmPasswordInput.value) {
+                    isValid = false;
+                    errorMsg = 'Пароли не совпадают';
+                }
+                
+                // Проверка согласия
+                const privacyAgreement = document.getElementById('privacyAgreement');
+                if (!privacyAgreement.checked) {
+                    isValid = false;
+                    errorMsg = 'Необходимо согласие на обработку персональных данных';
+                }
+                
+                if (isValid) {
+                    // Имитация успешной отправки
+                    successMessage.style.display = 'flex';
+                    registrationForm.reset();
+                    
+                    // Сбрасываем предпросмотр фотографии
+                    photoPreview.innerHTML = `
+                        <div class="photo-upload__hint">
+                            <i class="fas fa-info-circle"></i>
+                            <p>Рекомендуемый размер: не более 5 MB, форматы: JPG, PNG</p>
+                        </div>
+                    `;
+                    
+                    // Сбрасываем пароль
+                    strengthBar.style.width = '0%';
+                    strengthText.textContent = 'Надежность пароля';
+                    passwordMatchDiv.textContent = '';
+                    
+                    // Прокрутка к сообщению об успехе
+                    successMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                } else {
+                    errorMessageText.textContent = errorMsg || 'Пожалуйста, проверьте правильность заполнения всех полей';
+                    errorMessage.style.display = 'flex';
+                    
+                    // Прокрутка к сообщению об ошибке
+                    errorMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+            });
+            
+            // Обработка сброса формы
+            registrationForm.addEventListener('reset', function() {
+                // Скрываем все сообщения
+                successMessage.style.display = 'none';
+                errorMessage.style.display = 'none';
+                warningMessage.style.display = 'none';
+                
+                // Сбрасываем предпросмотр фотографии
+                photoPreview.innerHTML = `
+                    <div class="photo-upload__hint">
+                        <i class="fas fa-info-circle"></i>
+                        <p>Рекомендуемый размер: не более 5 MB, форматы: JPG, PNG</p>
+                    </div>
+                `;
+                
+                // Сбрасываем пароль
+                strengthBar.style.width = '0%';
+                strengthText.textContent = 'Надежность пароля';
+                passwordMatchDiv.textContent = '';
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,1 +1,42 @@
-/* themes.css */ 
+/* Стили для светлой темы */
+[data-theme="light"] {
+    --color-bg: #f8f9fa;
+    --color-bg-secondary: #ffffff;
+    --color-text: #212529;
+    --color-text-secondary: #6c757d;
+    --color-primary: #4a6fa5;
+    --color-primary-dark: #3a5a8a;
+    --color-secondary: #9d4edd;
+    --color-secondary-dark: #7b3cb0;
+    --color-accent: #ff6b6b;
+    --color-border: #dee2e6;
+    --color-success: #28a745;
+    --color-error: #dc3545;
+    --color-warning: #fd7e14;
+    
+    --shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    --shadow-lg: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Специфичные стили для светлой темы */
+[data-theme="light"] .header {
+    border-bottom: 1px solid var(--color-border);
+}
+
+[data-theme="light"] .competition-card,
+[data-theme="light"] .review-card,
+[data-theme="light"] .newsletter-form {
+    border: 1px solid var(--color-border);
+}
+
+[data-theme="light"] .theme-toggle {
+    color: var(--color-text);
+}
+
+[data-theme="light"] .theme-toggle:hover {
+    background-color: var(--color-border);
+}
+
+[data-theme="light"] .footer {
+    border-top: 1px solid var(--color-border);
+}

@@ -1,1 +1,247 @@
-/* responsive.css */ 
+/* Адаптивные стили */
+
+/* Для планшетов (768px - 991px) */
+@media (max-width: 991px) {
+    .container {
+        padding: 0 1.5rem;
+    }
+    
+    h1 {
+        font-size: 2rem;
+    }
+    
+    h2 {
+        font-size: 1.75rem;
+    }
+    
+    .hero .container {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .hero__image-inner {
+        font-size: 10rem;
+    }
+    
+    .about-content {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .competitions-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .footer__inner {
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--spacing-lg);
+    }
+    
+    .footer__social {
+        grid-column: span 2;
+        text-align: center;
+    }
+}
+
+/* Для мобильных устройств (до 767px) */
+@media (max-width: 767px) {
+    /* Структурные изменения для адаптивности */
+    
+    /* 1. Меню навигации скрывается в бургер-меню */
+    .nav {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: var(--color-bg-secondary);
+        padding: var(--spacing-md);
+        box-shadow: var(--shadow-lg);
+        z-index: 1000;
+    }
+    
+    .nav.active {
+        display: block;
+    }
+    
+    .nav__list {
+        flex-direction: column;
+        gap: 0;
+    }
+    
+    .nav__item {
+        width: 100%;
+    }
+    
+    .nav__link {
+        display: block;
+        padding: var(--spacing-sm);
+        border-bottom: 1px solid var(--color-border);
+    }
+    
+    .nav__link:last-child {
+        border-bottom: none;
+    }
+    
+    .burger {
+        display: flex;
+    }
+    
+    /* 2. Скрываем переключатель тем в мобильном меню */
+    .theme-toggle {
+        display: none;
+    }
+    
+    .nav__item:last-child {
+        margin-top: var(--spacing-sm);
+        border-top: 1px solid var(--color-border);
+        padding-top: var(--spacing-sm);
+    }
+    
+    /* 3. Изменение структуры герой-секции */
+    .hero__title {
+        font-size: 1.75rem;
+    }
+    
+    .hero__subtitle {
+        font-size: 1rem;
+    }
+    
+    .hero__image-inner {
+        font-size: 8rem;
+    }
+    
+    /* 4. Изменение сетки конкурсов с 3 колонок на 1 */
+    .competitions-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    /* 5. Изменение структуры подвала */
+    .footer__inner {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-md);
+    }
+    
+    .footer__social {
+        grid-column: span 1;
+    }
+    
+    /* 6. Уменьшение размера изображения в секции "О нас" */
+    .about-image__wrapper {
+        width: 200px;
+        height: 200px;
+        font-size: 5rem;
+    }
+    
+    /* 7. Изменение формы поиска */
+    .search-input-wrapper {
+        flex-direction: column;
+    }
+    
+    /* 8. Уменьшение размера видео-плейсхолдера */
+    .video-placeholder {
+        height: 250px;
+    }
+    
+    .video-placeholder i {
+        font-size: 3rem;
+    }
+    
+    /* 9. Изменение формы подписки */
+    .newsletter-form__inner {
+        align-items: stretch;
+    }
+    
+    /* 10. Уменьшение отступов */
+    .hero,
+    .popular-competitions,
+    .auth-section,
+    .about-section,
+    .greeting-section,
+    .competitions-section,
+    .search-section,
+    .reviews-section,
+    .newsletter-section {
+        padding: var(--spacing-lg) 0;
+    }
+    
+    .section-title {
+        margin-bottom: var(--spacing-md);
+    }
+}
+
+/* Для очень маленьких экранов (до 480px) */
+@media (max-width: 480px) {
+    .container {
+        padding: 0 1rem;
+    }
+    
+    h1 {
+        font-size: 1.5rem;
+    }
+    
+    h2 {
+        font-size: 1.25rem;
+    }
+    
+    .hero__image-inner {
+        font-size: 6rem;
+    }
+    
+    .btn {
+        padding: 0.5rem 1rem;
+        font-size: 0.9rem;
+    }
+    
+    .slider__prev,
+    .slider__next,
+    .reviews-prev,
+    .reviews-next {
+        font-size: 1rem;
+        padding: 0.25rem;
+    }
+}
+
+/* Для печати */
+@media print {
+    .header,
+    .footer,
+    .burger,
+    .theme-toggle,
+    .btn,
+    .slider__nav,
+    .reviews-nav,
+    .search-form,
+    .auth-form,
+    .newsletter-form {
+        display: none !important;
+    }
+    
+    body {
+        color: #000;
+        background-color: #fff;
+    }
+    
+    .container {
+        max-width: 100%;
+        padding: 0;
+    }
+    
+    a {
+        color: #000;
+        text-decoration: none;
+    }
+    
+    .section-title::after {
+        background: #000;
+    }
+    
+    .competition-card {
+        box-shadow: none;
+        border: 1px solid #ddd;
+    }
+    
+    .competition-card__image i {
+        filter: grayscale(100%);
+    }
+}
